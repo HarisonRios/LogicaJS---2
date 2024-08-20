@@ -7,6 +7,15 @@
 </head>
 <body>
 
+    <p>Qual é o seu KI guerreiro Sayajin?</p>
+        <input type="number" id="valor_ki">
+        <br>
+
+        <button onclick="calcularKi()">Calcular Ki</button>
+        <br><br>
+
+        <div id="resultadoKi"></div>
+
  
 
 
@@ -14,5 +23,13 @@
 </html>
 
 <script>
+    function calcularKi() {
+            let peso = Number(pesoInput.value);
 
+            let altura = Number(alturaInput.value);
+
+            let imc = peso / (altura * altura);
+
+            resultadoIMC.innerHTML = `Seu IMC é ${imc.toFixed(2)}`;
+        }
 </script>
