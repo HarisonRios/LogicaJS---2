@@ -1,35 +1,45 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Exercício 6</title>
 </head>
+
 <body>
-
     <p>Qual é o seu KI guerreiro Sayajin?</p>
-        <input type="number" id="valor_ki">
-        <br>
+    <input type="text" id="valor_ki">
+    <br>
 
-        <button onclick="calcularKi()">Calcular Ki</button>
-        <br><br>
+    <p>Transformar em...</p>
+    <button onclick="calcularKiSSJ()"> SSJ </button>
+    <button onclick="calcularKiSSJ2()"> SSJ2 </button>
+    <button onclick="calcularKiSSJ3()"> SSJ3 </button>
 
-        <div id="resultadoKi"></div>
-
- 
-
-
+    <br><br>
+    <div id="resultadoKi"></div>
 </body>
+
 </html>
 
 <script>
-    function calcularKi() {
-            let peso = Number(pesoInput.value);
+    function calcularKi(transformacao, multiplicador) {
+        let valorKi = Number(valor_ki.value)
+        let novoKi = valorKi * multiplicador;
+        resultadoKi.innerHTML = `Após se transformar em ${transformacao}, o ki desse Sayajin passa a ser de ${novoKi.toFixed(2)}.`;
+    }
 
-            let altura = Number(alturaInput.value);
+    function calcularKiSSJ() {
+        calcularKi('SSJ', 50);
+    }
 
-            let imc = peso / (altura * altura);
+    function calcularKiSSJ2() {
+        calcularKi('SSJ2', 100);
+    }
 
-            resultadoIMC.innerHTML = `Seu IMC é ${imc.toFixed(2)}`;
-        }
+    function calcularKiSSJ3() {
+        calcularKi('SSJ3', 200);
+    }
+
 </script>
