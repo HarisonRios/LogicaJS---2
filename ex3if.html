@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 2 - IF</title>
+</head>
+<body>
+
+    <p> Primeira Nota </p>
+    <input type="text" id="nota_um">
+    <br><br>
+
+    <p> Segunda Nota </p>
+    <input type="text" id="nota_dois">
+    <br><br>
+
+    <p> Terceira Nota </p>
+    <input type="text" id="nota_tres">
+    <br><br>
+
+    <button onclick="calcularNotas()">Analisar desempenho</button>
+    <br><br>
+    
+    <div id="resultadoValor"> </div>
+</body>
+</html>
+
+<script>
+    function calcularNotas() {
+        let nota1 = Number(nota_um.value)
+        let nota2 = Number(nota_dois.value)
+        let nota3 = Number(nota_tres.value)
+
+
+        let soma = nota1 + nota2 + nota3
+        let media = (nota1 + nota2 + nota3) / 3
+
+        resultadoValor.innerHTML = `Seu total foi de ${soma} pontos, onde ${media.toFixed(2)} é a média calculada.`
+
+        if (media >= 9.4 ) {
+                alert("Parabéns, você é fora de série!!")
+            }
+    }
+</script>
