@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 1 - IF</title>
+</head>
+
+<body>
+    <p>Qual é a sua idade </p>
+    <input type="text" id="user_idade">
+    <br><br>
+
+    <button onclick="checagemIdade()">Checar sua Idade</button>
+    <br><br>
+</body>
+
+</html>
+
+<script>
+    function checagemIdade() {
+        let idadePessoa = Number(user_idade.value)
+        if (idadePessoa >= 18) {
+            alert("#partiuFesta")
+        }
+        if (idadePessoa < 18 ) {
+                alert("Pedir permissão pro responsável!")
+            }
+    }
+</script>

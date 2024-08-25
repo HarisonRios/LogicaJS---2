@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 2 - IF</title>
+</head>
+<body>
+
+    <p> Pergunte quantas latinhas de refrigerante toma por dia  </p>
+    <input type="text" id="quantidade_latinha">
+    <br><br>
+
+    <button onclick="calcularRefrigerantes()">Quantos refris? </button>
+    <br><br>
+    
+    <div id="resultadoValor"> </div>
+</body>
+</html>
+
+<script>
+    function calcularRefrigerantes() {
+        let quantidadeLatinha = Number(quantidade_latinha.value)
+        
+        let totalano = quantidadeLatinha * 365 
+        resultadoValor.innerHTML = `Você toma ${totalano}.`
+
+        if (totalano >= 500 ) {
+                alert("Cuidado com a diabetes!")
+            }
+    }
+</script>
