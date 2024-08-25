@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 4 - IF</title>
+</head>
+
+<body>
+
+    <p> Qual é o valor da pizza </p>
+    <input type="text" id="valor_pizza">
+    <br><br>
+
+    <p> Quantos amigos tem reunidos? </p>
+    <input type="text" id="quantidade_amigos">
+    <br><br>
+
+    <button onclick="calcularPizza()">Rola a pizza?</button>
+    <br><br>
+
+    <div id="resultadoValor"> </div>
+</body>
+
+</html>
+
+<script>
+    function calcularPizza() {
+        let valorPizza = Number(valor_pizza.value)
+        let quantidadeAmigos = Number(quantidade_amigos.value)
+
+        let valorPorAmigo = valorPizza / quantidadeAmigos;
+
+        resultadoValor.innerHTML = `Cada amigo vai pagar R$${valorPorAmigo.toFixed(2)} pela pizza.`
+
+        if (valorPorAmigo > 20) {
+            alert("Deu ruim! Pizza muito cara")
+        }
+    }
+
+
+</script>
