@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividade 1</title>
+</head>
+<body>
+
+
+    <p> Cidade Natal</p>
+    <input type="text" id="cidadenatal">
+
+    <p> Ano Nascimento </p>
+    <input type="date" id="anonasc">
+
+    <button onclick="apresentar()"> Cadastrar </button>    
+</body>
+</html>
+
+<script>
+    function apresentar() {
+    alert(
+      `Sua cidade natal é: ${cidadenatal.value} e sua data de nascimento é : ${anonasc.value}`
+    );
+  }
+</script>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 7</title>
+</head>
+
+<body>
+    <p> Quantos litros de combustivel você utilizou</p>
+    <input type="text" id="qtd_litros"><br>
+
+    <p> Qual foi a distancia que você percorreu?</p>
+    <input type="text" id="distancia_percorrida"><br>
+
+    <button onclick="calcularConsumo()"> Calcular Consumo </button>
+
+    <div id="resultado"></div>
+
+</body>
+
+</html>
+
+<script>
+    function calcularConsumo() {
+        let qtdLitros = Number(qtd_litros.value)
+        let disPercorrida = Number(distancia_percorrida.value)
+
+        let consumo = qtdLitros / disPercorrida
+
+        if (consumo > 12 ){
+            resultado.innerHTML = `Consumo elevado, verificar motor!`
+        } else {
+            resultado.innerHTML = `"Ótimo consumo, carro econômico!`
+        }
+    }
+
+</script>

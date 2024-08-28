@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 3</title>
+</head>
+<body>
+
+    <p> Tabuada : </p>
+    <input type="text" id="valor_tabuada">
+    <button onclick="calcularTabuada()"> Ver Tabuada </button>
+    <br><br>
+    <div id="resultadoTabuada"> </div>
+
+</body>
+</html>
+
+<script>
+    function calcularTabuada(){
+        let valorTabuada = Number(valor_tabuada.value);
+        
+        resultadoTabuada.innerHTML += `<h2>Tabuada do numero : ${valorTabuada}</h2>`;
+        
+        for (let i = 1; i <= 10; i++) {
+        resultadoTabuada.innerHTML += `${valorTabuada} x ${i} = ${valorTabuada * i}<br>`;
+    }
+    }
+</script>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 4</title>
+</head>
+
+<body>
+    <p> Nota 1</p>
+    <input type="text" id="nota_um"><br>
+
+    <p> Nota 2</p>
+    <input type="text" id="nota_dois"><br>
+
+    <button onclick="calcularMedia()"> Calcular media </button>
+
+    <div id="resultado"></div>
+
+</body>
+
+</html>
+
+<script>
+    function calcularMedia() {
+        let nota1 = Number(nota_um.value)
+        let nota2 = Number(nota_dois.value)
+
+        let soma = nota1 + nota2
+
+        if(soma >= 6){
+            resultado.innerHTML = `Parabéns, aprovado!`
+        } else {
+              resultado.innerHTML = `Tente outra vez...`
+        }
+    }
+
+</script>

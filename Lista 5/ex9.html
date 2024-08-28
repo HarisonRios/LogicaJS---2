@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 9</title>
+</head>
+
+<body>
+    <p> Quantos é o valor do emprestimo</p>
+    <input type="text" id="valor_emprestimo"><br>
+
+    <p> Qual e a quantidade de parcelas que deseja pagar?</p>
+    <input type="text" id="qtd_parcelas"><br>
+
+    <button onclick="calcularJuros()"> Calcular Juros </button>
+
+    <div id="resultado"></div>
+
+</body>
+
+</html>
+
+<script>
+    function calcularJuros(){
+        let valorEmprestimo = Number(valor_emprestimo.value)
+        let qtdParcelas = Number(qtd_parcelas.value)
+
+        let valorTotal = (valorEmprestimo * * 0.02
+ 
+
+        if(valorTotal > 50.000){
+            resultado.innerHTML = `Valor total a pagar em ${qtdParcelas} meses é de R$ ${valorTotal}`
+        } else {
+            resultado.innerHTML = `Empréstimo de alto valor, consulte o gerente!`
+        }
+    }
+
+</script>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 5</title>
+</head>
+
+<body>
+    <p>Qual é o valor da passagem de onibus? </p>
+    <input type="text" id="passagem_onibus">
+    <br><br>
+
+    <p>Quantas viagens você faz por mês? </p>
+    <input type="text" id="viagens_onibus">
+    <br><br>
+
+    <p>Qual é a distancia da sua casa até o trabalho (em KM/h)? </p>
+    <input type="text" id="distancia_km">
+    <br><br>
+
+    <button onclick="calcularVT()">Calcular VT</button>
+    <br><br>
+
+    <div id="resultadoValor"> </div>
+
+    <script>
+       function calcularVT(){
+        let passagemOnibus = Number(passagem_onibus.value)
+        let viagensOnibus = Number(viagens_onibus.value)
+        let distanciaKM = Number(distancia_km.value)
+
+           resultadoValor.innerHTML = `Você vai gastar R$${} por mês com transporte.`
+       }
+        
+    </script>
+</body>
+</html>
