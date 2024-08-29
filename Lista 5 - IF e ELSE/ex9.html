@@ -16,23 +16,23 @@
     <button onclick="calcularJuros()"> Calcular Juros </button>
 
     <div id="resultado"></div>
-
 </body>
 
 </html>
-
 <script>
-    function calcularJuros(){
-        let valorEmprestimo = Number(valor_emprestimo.value)
-        let qtdParcelas = Number(qtd_parcelas.value)
+    function calcularJuros() {
+        let valorEmprestimo = Number(valor_emprestimo.value);
+        let qtdParcelas = Number(qtd_parcelas.value);
 
-        let valorTotal = (valorEmprestimo * * 0.02
- 
+        let taxaJuros = 0.02;
 
-        if(valorTotal > 50.000){
-            resultado.innerHTML = `Valor total a pagar em ${qtdParcelas} meses é de R$ ${valorTotal}`
+        // Pesquisar melhor sobre Math.pow
+        let valorTotal = valorEmprestimo * Math.pow((1 + taxaJuros), qtdParcelas);
+
+        if (valorTotal <= 50000) {
+            resultado.innerHTML = `Valor total a pagar em ${qtdParcelas} meses é de R$ ${valorTotal.toFixed(2)}`;
         } else {
-            resultado.innerHTML = `Empréstimo de alto valor, consulte o gerente!`
+            resultado.innerHTML = `Empréstimo de alto valor, consulte o gerente!`;
         }
     }
 
