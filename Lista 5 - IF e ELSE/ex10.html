@@ -7,6 +7,13 @@
 </head>
 
 <body>
+    <p>Qual é a sua altura?</p>
+    <input type="text" id="altura_valor"><br>
+    <p>Qual é o seu peso?</p>
+    <input type="text" id="peso_valor"><br>
+    <br>
+
+    <button onclick="calcularIMC()"> Calcular IMC</button>
    
 
     <div id="resultado"></div>
@@ -14,6 +21,29 @@
 
 </html>
 <script>
-   
+    function calcularIMC(){
+        let altura = Number(altura_valor.value)
+        let alturaMetro = altura / 100
+        let peso = Number(peso_valor.value)
+    
+        let imc = peso / (alturaMetro * alturaMetro) 
+
+
+       
+            resultado.innerHTML = `Abaixo do Peso`
+
+            if (imc >= 18.5){
+            if(imc >= 24.9){
+                resultado.innerHTML = `Peso normal`
+            }else {
+                resultado.innerHTML = `Sobrepeso`
+            }
+        }
+
+        }
+        
+
+    
+    
 
 </script>
