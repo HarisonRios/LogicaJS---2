@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 13</title>
+</head>
+
+<body>
+    <p>Qual é o o valor do empresitmo?</p>
+    <input type="text" id="valor_emprestimo"><br>
+    <br>
+    <p>Qual será o numero de parcelas?</p>
+    <input type="text" id="numero_parcelas"><br>
+    <br>
+    <p>Quantas sera a taxa de juros ao mes?</p>
+    <input type="text" id="taxa_juros"><br>
+    <br>
+
+
+    <button onclick="calcularPrestacao()"> Calcular Frete</button>
+   
+
+    <div id="resultado"></div>
+</body>
+</html>
+
+<script>
+    function calcularPrestacao() {
+    let valorEmprestimo = Number(valor_emprestimo.value);
+    let numeroParcelas = Number(numero_parcelas.value);
+    let taxaJuros = Number(taxa_juros.value) / 100;
+
+    let valorParcela = (valorEmprestimo * (1 + taxaJuros) ** numeroParcelas) / numeroParcelas;
+
+    if (valorParcela <= 1000) {
+        resultado.innerHTML = `Parcela aceitável: R$ ${valorParcela.toFixed(3)}`;
+    } else {
+        resultado.innerHTML = `Parcela alta, considere aumentar o número de parcelas!`;
+    } 
+}
+</script>
