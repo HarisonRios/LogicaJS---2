@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 15</title>
+</head>
+
+<body>
+    <p>Qual é a seu nome completo?</p>
+    <input type="text" id="nome_cliente"><br>
+    <br>
+
+    <p>Qual é a sua idade?</p>
+    <input type="text" id="idade_cliente"><br>
+    <br>
+
+    <p>Qual é o seu peso?</p>
+    <input type="text" id="peso_cliente"><br>
+    <br>
+
+    <p>Qual é a sua altura?</p>
+    <input type="text" id="altura_cliente"><br>
+    <br>
+
+    <p>Você deseja ter um plano personal trainer (use apenas sim ou não)?</p>
+    <input type="text" id="personal_atleta"><br>
+    <br>
+
+    <br>
+    <button onclick="verifcarCategoria()"> Verificar Categoria </button> <br> 
+  
+    <div id="resultadoImc"></div> <br> 
+   
+    <div id="resultado"></div> <br> 
+  
+    <div id="resultadoDesc"></div> <br> 
+ 
+    <div id="resultadoFinal"></div> <br> 
+</body>
+
+</html>
+
+<script>
+    function verifcarCategoria() {
+        let nome = nome_cliente.value
+        let idade = Number(idade_cliente.value)
+        let peso = Number(peso_cliente.value)
+        let altura = Number(altura_cliente.value)
+        let personal = personal_atleta.value
+
+
+        let alturaMetro = altura / 100
+        let imc = peso / (alturaMetro * alturaMetro)
+
+        if (imc <= 18.5) {
+            resultadoImc.innerHTML = `Abaixo do Peso`
+        } else {
+            if (imc <= 24.9) {
+                resultadoImc.innerHTML = `Peso normal`
+            } if (imc <= 29.9) {
+                resultadoImc.innerHTML = `Sobrepeso`
+            } else {
+                resultadoImc.innerHTML = `Obesidade`
+            }
+        }
+
+        let mensalidadeBase = 100
+        let valorMensalidade = mensalidadeBase;
+
+
+        if (personal == "sim") {
+            valorMensalidade += 50.00;
+            resultado.innerHTML = `Plano com personal trainer incluído (R$ 50,00). Valor total: R$ ${valorMensalidade.toFixed(2)}`;
+        } else {
+            resultado.innerHTML = `Plano sem personal trainer. Valor total: R$ ${valorMensalidade.toFixed(2)}`;
+        }
+
+
+        if (idade >= 60) {
+            desconto = valorMensalidade * 0.30
+            valorDesconto = valorMensalidade - desconto
+            resultadoDesc.innerHTML = `Desconto sênior de 30% aplicado  `
+        }
+        else {
+            if (idade >= 12) {
+                if (idade <= 18) {
+                    desconto = valorMensalidade * 0.15
+                    valorDesconto = valorMensalidade - desconto
+                    resultadoDesc.innerHTML = `Desconto jovem  de 15% aplicado`
+                } else {
+                    desconto = valorMensalidade * 0
+                    valorDesconto = valorMensalidade - desconto
+                    resultadoDesc.innerHTML = `Sem descontos aplicáveis`
+                }
+            } 
+        }
+
+        resultadoFinal.innerHTML = `${nome}, o valor total da sua mensalidade é de R$${valorDesconto.toFixed(2)}`
+
+
+
+    }
+
+</script>

@@ -23,13 +23,11 @@
 <script>
     function calcularIMC(){
         let altura = Number(altura_valor.value)
-        let alturaMetro = altura / 100
         let peso = Number(peso_valor.value)
-    
+        
+        let alturaMetro = altura / 100
         let imc = peso / (alturaMetro * alturaMetro) 
 
-
-       
             resultado.innerHTML = `Abaixo do Peso`
 
             if (imc >= 18.5){
