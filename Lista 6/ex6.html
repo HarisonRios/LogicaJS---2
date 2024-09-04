@@ -20,8 +20,29 @@
 
 <script>
     function checarTime(){ 
+        let time = time_torce.value
 
-        
+        if (time == "Corinthians") {
+                resultado.style.backgroundColor = "black";
+                resultado.style.color = "white";
+                resultado.innerHTML = "Salve o Corinthians ...";
+            } else if (time == "Palmeiras") {
+                resultado.style.backgroundColor = "green";
+                resultado.style.color = "white";
+                resultado.innerHTML = "Quando surge o Alviverde Imponente ...";
+            } else if (time == "Santos") {
+                resultado.style.backgroundColor = "white";
+                resultado.style.color = "black";
+                resultado.innerHTML = "Agora quem dá a bola é o Santos ...";
+            } else if (time == "São Paulo") {
+                resultado.style.backgroundColor = "black";
+                resultado.style.color = "red";
+                resultado.innerHTML = "Salve o Tricolor Paulista ...";
+            } else {
+                resultado.style.backgroundColor = "grey";
+                resultado.style.color = "white";
+                resultado.innerHTML = "Time não mapeado";
+            }
     }
     
 </script>
