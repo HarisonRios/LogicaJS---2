@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desafio</title>
+</head>
+
+<body>
+
+    <p> Retangulo 1</p>
+
+    <p> x 0 </p>
+    <input type="text" id="retangulo1_x0"><br>
+
+    <p> y 0 </p>
+    <input type="text" id="retangulo1_y0"><br>
+
+    <p> x 1 </p>
+    <input type="text" id="retangulo1_x1"><br>
+
+    <p> y 1 </p>
+    <input type="text" id="retangulo1_y1"><br>
+
+    <br>
+    <p> Retangulo 2</p>
+
+    <p> x 0 </p>
+    <input type="text" id="retangulo2_x0"><br>
+
+    <p> y 0 </p>
+    <input type="text" id="retangulo2_y0"><br>
+
+    <p> x 1 </p>
+    <input type="text" id="retangulo2_x1"><br>
+
+
+    <p> y 1 </p>
+    <input type="text" id="retangulo2_y1"><br>
+    <br>
+
+    <button onclick="verificarColisao()">Verificar colisão</button>
+
+    <div id="resultado"></div>
+
+</body>
+
+</html>
+
+<script>
+    function verificarColisao() {
+        let retangulo1x0 = Number(retangulo1_x0.value)
+        let retangulo1x1 = Number(retangulo1_x1.value)
+        let retangulo1y0 = Number(retangulo1_y0.value)
+        let retangulo1y1 = Number(retangulo1_y1.value)
+
+        let retangulo2x0 = Number(retangulo2_x0.value)
+        let retangulo2x1 = Number(retangulo2_x1.value)
+        let retangulo2y0 = Number(retangulo2_y0.value)
+        let retangulo2y1 = Number(retangulo2_y1.value)
+
+        
+        if (retangulo1x1 <= retangulo2x0) {
+                resultado.innerHTML = `Elementos não colidem`
+            } else if (retangulo2x1 <= retangulo1x0) {
+                resultado.innerHTML  = `Elementos não colidem`
+            } else if (retangulo1y1 <= retangulo2y0) {
+                resultado.innerHTML  = `Elementos não colidem`
+            } else if (retangulo2y1 <= retangulo1y0) {
+                resultado.innerHTML  = `Elementos não colidem`
+            } else {
+                resultado.innerHTML = `Elementos colidem`
+            }
+    }
+
+</script>
