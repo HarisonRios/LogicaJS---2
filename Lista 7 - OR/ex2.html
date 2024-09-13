@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 2 - Lista 7 OR</title>
+</head>
+<body>
+    <p> Qual é a sua renda </p>
+    <input type="text" id="renda_usuario">
+    <p> Qual renda total familiar do usuário </p>
+    <input type="text" id="renda_familiar">
+    <br><br>
+    <button onclick="checarBeneficio()"> Terei o benefício? </button>
+  
+    
+</body>
+</html>
+
+<script>
+    function checarBeneficio(){
+        const rendaUsuario = Number(renda_usuario.value)
+        const rendaFamiliar = Number(renda_familiar.value)
+
+        if(rendaTotal <= 2000  || rendaTotal <= 3000){
+            alert("Você terá direito")
+
+        }else {
+            alert("Você NÃO terá direito")
+        }      
+    }
+
+</script>

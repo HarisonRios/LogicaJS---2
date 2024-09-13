@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 1 - Lista 7 OR</title>
+</head>
+<body>
+    <p> Nota do vestibular </p>
+    <input type="text" id="nota_vestibular">
+    <p> Nota do ENEM </p>
+    <input type="text" id="nota_enem">
+    <br><br>
+    <button onclick="checarAvalicao()">Avaliação</button>
+  
+    
+</body>
+</html>
+
+<script>
+    function checarAvalicao(){
+        const notaVestibular = Number(nota_vestibular.value)
+        const notaEnem = Number(nota_enem.value)
+
+        if(notaVestibular >= 800 || notaEnem >= 700){
+            alert("Parabéns! Aprovado")
+        } else {
+            alert("Tente semestre que vem!")
+        }
+    }
+
+</script>

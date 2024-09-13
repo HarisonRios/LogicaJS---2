@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 5 - Lista 7 OR</title>
+</head>
+
+<body>
+    <h1>Calculadora de cansaço do aluno SPTech. </h1>
+    <select id="meio_transporte" name="transporte">
+        <option value="onibus">Ônibus</option>
+        <option value="metro">Metrô</option>
+        <option value="carro">Carro</option>
+        <option value="bicicleta">Bicicleta</option>
+        <option value="lotacao">Lotação</option>
+    </select>
+    <br><br>
+    <button onclick="calcularCansaco()"> Calcular cansaço </button>
+
+    <p id="resultado"> </p>
+
+</body>
+
+</html>
+
+<script>
+    function calcularCansaco() {
+        let transporte = meio_transporte.value
+
+        if (transporte == "carro" || transporte == "bicicleta") {
+            resultado.innerHTML = `Tá tranquilo ...`
+        } else if (transporte == "metro") {
+            resultado.innerHTML = `Um pouco cansado`
+        } else if (transporte == "onibus" || transporte == "lotacao") {
+            resultado.innerHTML = `Vish ... vive cansado.`
+        }
+    }
+
+
+</script>

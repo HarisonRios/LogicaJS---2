@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 7 - Lista 7 OR</title>
+</head>
+
+<body>
+    <select id="marca_tv" name="marcaTv">
+      <option value="samsung">Samsung</option>
+      <option value="lg">LG</option>
+      <option value="mondial">Mondial</option>
+      <option value="britania">Britânia</option>
+    </select>
+
+    <p>Qual é o preço da TV</p>
+    <input type="text" id="preco_tv">
+    
+
+    <br><br>
+    <button onclick="AnalisarCompra()"> Analisar compra </button>
+
+    <p id="resultado"> </p>
+
+</body>
+
+</html>
+
+<script>
+    function AnalisarCompra() {
+        let marca = marca_tv.value
+        let preco = preco_tv.value
+
+
+        if ( temperaturaAtual < 800 ||  temperaturaAtual > 2000) {
+                resultado.innerHTML = `TV fora da faixa de preço`
+        } else if ( temperaturaAtual < 800 ||  temperaturaAtual > 2000) {
+                resultado.innerHTML = `TV fora da faixa de preço`
+        }
+ }
+
+
+</script>
