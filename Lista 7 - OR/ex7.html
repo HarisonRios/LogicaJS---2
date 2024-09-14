@@ -8,38 +8,49 @@
 </head>
 
 <body>
-    <select id="marca_tv" name="marcaTv">
-      <option value="samsung">Samsung</option>
-      <option value="lg">LG</option>
-      <option value="mondial">Mondial</option>
-      <option value="britania">Britânia</option>
+    <br>
+    <select id="marca_tv">
+        <option value="samsung">Samsung</option>
+        <option value="lg">LG</option>
+        <option value="mondial">Mondial</option>
+        <option value="britania">Britânia</option>
     </select>
 
     <p>Qual é o preço da TV</p>
     <input type="text" id="preco_tv">
-    
+
 
     <br><br>
-    <button onclick="AnalisarCompra()"> Analisar compra </button>
+    <button onclick="analisarCompra()"> Analisar compra </button>
 
     <p id="resultado"> </p>
+    <p id="resultado2"> </p>
 
 </body>
 
 </html>
 
 <script>
-    function AnalisarCompra() {
+    function analisarCompra() {
         let marca = marca_tv.value
         let preco = preco_tv.value
 
-
-        if ( temperaturaAtual < 800 ||  temperaturaAtual > 2000) {
-                resultado.innerHTML = `TV fora da faixa de preço`
-        } else if ( temperaturaAtual < 800 ||  temperaturaAtual > 2000) {
-                resultado.innerHTML = `TV fora da faixa de preço`
+        if (preco < 800 || preco > 2000) {
+            if (preco < 800) {
+                resultado2.innerHTML = `Preço baixo demais!`
+            } else if (preco > 2000) {
+                resultado2.innerHTML = `TV cara demais, infelizmente`
+            }
+            resultado.innerHTML = `TV fora da faixa de preço`
         }
- }
+        else if ((preco >= 800 && preco <= 2000) && (marca === "mondial" || marca === "britania")) {
+            resultado.innerHTML = `Na faixa de preço, porém marca não confiável`
+        } else if ((preco >= 800 && preco <= 2000) && (marca === "samsung" || marca === "lg")) {
+            resultado.innerHTML = `Essa TV pode entrar na sua lista!`
+        }
+    }
+
+
 
 
 </script>
