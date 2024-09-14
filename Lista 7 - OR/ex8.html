@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 8 - Lista 7 OR</title>
+</head>
+
+<body>
+
+ <p>Qual é o nome da Empresa</p><br>
+ <input type="text" id="nome_empresa">
+
+ <p>Qual é o valor da bolsa da Empresa?</p><br>
+ <input type="text" id="valor_bolsa">
+
+ <p>Qual é o valor do VR da Empresa</p><br>
+ <input type="text" id="valor_vr">
+
+ <p>Qual é tempo de deslocamneto da empresa para SPTECH?</p><br>
+ <input type="text" id="tempo_deslocamento"><br><br>
+ <button onclick="empresaPreferida()">É preferida?"</button>
+
+
+
+ <div id="resultado"> </div>
+
+    
+
+</body>
+</html>
+<script>
+    function empresaPreferida(){
+        const nome = nome_empresa.value
+        const valor = Number(valor_bolsa.value)
+        const valorVr = Number(valor_vr.value)
+        const tempo = tempo_deslocamento.value
+
+
+        if(valor >= 1800 || valorVr >= 20 || tempo <= 30){
+            resultado.innerHTML = `A empresa ${nome} é uma de suas preferências`
+        } else {
+            resultado.innerHTML = `A empresa ${nome} está fora da sua lista`  
+        }
+    }
+  
+
+
+
+</script>
