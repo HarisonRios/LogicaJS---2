@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 10 - Lista 7 AND</title>
+</head>
+<body>
+    <p>Qual é o sua idade?</p>
+    <input type="text" id="idade_usuario">
+
+    <p>Qual é o seu salario?</p>
+    <input type="text" id="salario_usuario"> <br><br>
+    
+    <button onclick="analisarSituação()"> Analisar situação  </button> <br>
+    
+    
+    <div id="resultado"> </div>
+</body>
+</html>
+
+<script>
+    function analisarSituação(){
+        const idade = idade_usuario.value
+        const salario = salario_usuario.value
+
+        if(idade < 18 && salario < 2500 ) {
+            resultado.innerHTML = `Menor de idade e liso`
+        } 
+        else if(idade < 18 && salario >= 2500 )  {
+            resultado.innerHTML = `Menor de idade e ostentação`
+        } 
+        else if(idade >= 18 && salario < 3500 )  {
+            resultado.innerHTML = `Maior de idade e liso`
+        } 
+        else if(idade >= 18 && salario >= 3500 && salario <= 7000)  {
+            resultado.innerHTML = `Maior de idade e ostentação`
+        } 
+        else if(idade >= 18 && salario > 7000) {
+            resultado.innerHTML = `Maior de idade e jovem milionário`
+        } 
+       
+
+
+    }
+</script>

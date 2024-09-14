@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exercício 7 - Lista 7 AND</title>
+    <title>Exercício 8 - Lista 7 AND</title>
 </head>
 <body>
     <p>Login</p>
@@ -11,11 +11,13 @@
 
     <p>Senha</p>
     <input type="password" id="senha_usuario">
+
+    <p>Codigo Verificação</p>
+    <input type="password" id="codigo_verificacao">
     <br>
     <br>
 
     <button onclick="verificarSenha()"> Entrar... </button>
-    <button onclick="verSenha()"> Ver Senha </button>
 
     <div id="resultado"> </div>
 </body>
@@ -23,21 +25,18 @@
 
 <script>
     function verificarSenha(){
-        let loginUsuario = login_usuario.value
-        let senhaUsuario = String(senha_usuario.value)
+        const loginUsuario = login_usuario.value
+        const senhaUsuario = String(senha_usuario.value)
+        const codigoVerificacao = codigo_verificacao.value
 
-        if(loginUsuario == "SPTech" && senhaUsuario == "Digital"){
+        if(loginUsuario == "SPTech" && senhaUsuario == "Digital" && codigoVerificacao == "123"){
             alert("Usuário autenticado com sucesso")
         } else {
             alert("Falha na autenticação")
         }
     }
 
-    function verSenha(){
-        let senhaUsuario = String(senha_usuario.value)
-
-        resultado.innerHTML = `Sua senha é ${senhaUsuario}` 
-    }
+  
 
     
 
