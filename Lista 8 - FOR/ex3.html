@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 3 - Lista 8 FOR</title>
+
+</head>
+<body>
+    
+    <button onclick="boaTardeContador()"> Boa Tarde? </button>
+    <div id="resultado"> </div>
+    
+</body>
+</html>
+
+<script>
+    function boaTardeContador() {
+        resultado.innerHTML = ` `
+        for (let numero = 1; numero <= 7; numero += 1){
+         resultado.innerHTML += `${numero} - Boa Tarde<br>`
+        }
+    }
+
+</script>

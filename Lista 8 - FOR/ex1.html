@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 1 - Lista 8 FOR</title>
+</head>
+
+<body>
+    <button onclick="contadorNumero()"> Clique aqui para contar até 15 </button>
+
+    <div id="resultado"> </div>
+</body>
+
+</html>
+
+<script>
+    function contadorNumero() {
+        resultado.innerHTML = ` `
+        for (let numero = 1; numero <= 15; numero += 1){
+         resultado.innerHTML += ` ${numero} <br>`
+        }
+    }
+
+</script>
