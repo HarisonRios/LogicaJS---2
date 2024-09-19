@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercícios 12 - Lista 9</title>
+</head>
+
+<body>
+    <select id="numero_select">
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+    </select>
+
+    <p> Até que número a tabuada deve ser construída </p>
+    <input type="text" id="numero_vezes"> <br><br>
+
+    <button onclick="tabuada()"> Iniciar corrida! </button>
+
+    <div id="resultado"></div>
+
+</body>
+
+</html>
+
+<script>
+    function tabuada() {
+        let numeroSelect = Number(numero_select.value);
+        let numeroV = Number(numero_vezes.value);
+
+        resultado.innerHTML = ``;
+
+        for (let i = 1; i <= numeroV; i += 1) {
+            let cor = (i % 2 === 0) ? 'blue' : 'red'; 
+            resultado.innerHTML += `<p style="background-color: ${cor}">${numeroSelect} x ${i} = ${numeroSelect * i}</p>`;
+        }
+    }
+</script>
