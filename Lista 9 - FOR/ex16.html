@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercícios 16 - Lista 9 FOR</title>
+</head>
+<body>
+    <p>Quantas pessoas, vão entrar no carro  </p>
+    <input type="text" id="qtd_pessoas"> <br><br>
+
+    <button onclick="quantidadePassageiros()"> #Partiu Carona...  </button>
+
+    <p id="resultado"></p><br>
+    
+</body>
+</html>
+
+<script> 
+    function quantidadePassageiros() {
+        let qtdPessoa  = Number(qtd_pessoas.value);
+        resultado.innerHTML = ``;
+
+        for (let dia = 1; dia <= qtdPessoa; dia++) {
+                if (dia % qtdPessoa === 1 || dia === 1) {
+                    resultado.innerHTML += `Entrou o ${dia}º passageiro (que é o(a) motorista) <br>`;
+                } else if (dia <= 5){
+                    resultado.innerHTML += `Entrou o ${dia}º passageiro  <br>  `;
+                } else if (dia >= 5){
+                    resultado.innerHTML += `O ${dia}º passageiro terá que esperar! <br>  `;
+                }
+            }
+            }        
+
+</script>

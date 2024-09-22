@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercícios 17 - Lista 9 FOR</title>
+</head>
+<body>
+    <p>Quantas pessoas, vão entrar no carro  </p>
+    <input type="text" id="qtd_pessoas"> <br><br>
+
+    <p>Qual e a capacidade de passageiros que o veículo suporta</p>
+    <input type="text" id="qtd_suporta"> <br><br>
+
+
+    <button onclick="quantidadePassageiros()"> #Partiu Carona...  </button>
+
+    <p id="resultado"></p><br>
+    
+</body>
+</html>
+
+<script> 
+    function quantidadePassageiros() {
+        resultado.innerHTML = ``;
+
+        let qtdPessoa  = Number(qtd_pessoas.value)
+        let qtdSuporta = Number(qtd_suporta.value)
+
+        for (let i = 1; i <= qtdPessoa; i++) {
+            if (i === 1) {
+                resultado.innerHTML += `Entrou o ${i}º passageiro (que é o(a) motorista) <br>`;
+            } else if (i <= qtdSuporta) {
+                resultado.innerHTML += `Entrou o ${i}º passageiro <br>`;
+            } else {
+                resultado.innerHTML += `O ${i}º passageiro terá que esperar! <br>`;
+            }
+        }
+            }        
+
+</script>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercícios 18 - Lista 9 FOR</title>
+</head>
+
+<body>
+    <p>Quantas "Coca-Cola" voce acha que já bebeu na vida? </p>
+    <input type="text" id="qtd_coca"> <br><br>
+
+    <button onclick="quantidadeCocaCola()"> Ver a quantidade </button>
+
+    <p id="resultado"></p><br>
+
+</body>
+
+</html>
+
+<script>
+    function quantidadeCocaCola() {
+        resultado.innerHTML = ``;
+
+        let qtdCoca = Number(qtd_coca.value)
+
+
+        for (let i = 1; i <= qtdCoca; i++) {
+            resultado.innerHTML += `<img src=" https://www.callfarma.com.br/_next/image?url=https%3A%2F%2Fd2lakedouw4zad.cloudfront.net%2Fcoca-cola-lata-350ml-74082.png&w=828&q=75" class="coca-img" ${i}">`;
+        }
+    }        
+</script>
+
+<style>
+    .coca-img {
+        width: 50px;
+        margin: 5px;
+    }
+</style>

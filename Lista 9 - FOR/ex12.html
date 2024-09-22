@@ -22,7 +22,7 @@
     <p> Até que número a tabuada deve ser construída </p>
     <input type="text" id="numero_vezes"> <br><br>
 
-    <button onclick="tabuada()"> Iniciar corrida! </button>
+    <button onclick="tabuada()">Ver Tabuada</button>
 
     <div id="resultado"></div>
 
@@ -31,15 +31,24 @@
 </html>
 
 <script>
-    function tabuada() {
-        let numeroSelect = Number(numero_select.value);
-        let numeroV = Number(numero_vezes.value);
+function tabuada() {
+    let numeroSelect = Number(numero_select.value);
+    let numeroV = Number(numero_vezes.value);
 
-        resultado.innerHTML = ``;
+    resultado.innerHTML = ``;
 
-        for (let i = 1; i <= numeroV; i += 1) {
-            let cor = (i % 2 === 0) ? 'blue' : 'red'; 
-            resultado.innerHTML += `<p style="background-color: ${cor}">${numeroSelect} x ${i} = ${numeroSelect * i}</p>`;
+    for (let i = 1; i <= numeroV; i += 1) {
+        let resultadoMultiplicacao = numeroSelect * i;
+        let cor;
+        
+        if (resultadoMultiplicacao % 2 === 0) {
+            cor = 'blue';  
+        } else {
+            cor = 'red';   
         }
+
+        resultado.innerHTML += `<div style="background-color: ${cor}">${numeroSelect} x ${i} = ${resultadoMultiplicacao}</div>`;
     }
+}
+
 </script>
