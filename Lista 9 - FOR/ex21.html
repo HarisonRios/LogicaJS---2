@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercícios 21 - Lista 9 FOR</title>
+</head>
+
+<body>
+    <p>Quantos depósitos você fez no banco</p>
+    <input type="text" id="qtd_deposistos"> <br><br>
+
+    <p>Qual era o valor de cada depósito</p>
+    <input type="text" id="valor_depositos"> <br><br>
+
+
+    <button onclick="acompanharGrana()"> Acompanhar Grana </button>
+
+    <p id="resultado"></p><br>
+
+</body>
+
+</html>
+
+<script>
+        function acompanharGrana() {
+            resultado.innerHTML = ``;
+
+            let quantidade = Number(qtd_deposistos.value);
+            let valor = Number(valor_depositos.value);
+            let total = 0; 
+
+            for (let numero = 1; numero <= quantidade; numero += 1) {
+                total += valor; 
+                
+                if (numero % 3 === 0) {
+                    total += total * 0.01;
+                }
+
+                resultado.innerHTML += `${numero}º Mês: R$ ${total.toFixed(2)} <br>`;
+            }
+
+            resultado.innerHTML += `<br>Total guardado: R$ ${total.toFixed(2)}`; 
+        }
+</script>

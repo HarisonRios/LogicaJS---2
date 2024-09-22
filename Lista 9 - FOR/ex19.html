@@ -8,33 +8,31 @@
 </head>
 
 <body>
-    <p>Quantas "Coca-Cola" voce acha que já bebeu na vida? </p>
-    <input type="text" id="qtd_coca"> <br><br>
+    <p>Quantas xícaras de café com leite você já tomou na vida; </p>
+    <input type="text" id="qtd_cafecomleite"> <br><br>
 
-    <button onclick="quantidadeCocaCola()"> Ver a quantidade </button>
+    <button onclick="quantidadeCafeComLeite()"> Ver a quantidade </button>
 
     <p id="resultado"></p><br>
-
 </body>
 
 </html>
 
-<script>
-    function quantidadeCocaCola() {
+<script> 
+    function quantidadeCafeComLeite() {
         resultado.innerHTML = ``;
 
-        let qtdCoca = Number(qtd_coca.value)
+        let qtdCafeLeite = Number(qtd_cafecomleite.value)
+        colheresCafe = 0
+        colheresLeite = 0
 
-
-        for (let i = 1; i <= qtdCoca; i++) {
-            resultado.innerHTML += `<img src=" https://www.callfarma.com.br/_next/image?url=https%3A%2F%2Fd2lakedouw4zad.cloudfront.net%2Fcoca-cola-lata-350ml-74082.png&w=828&q=75" class="coca-img" ${i}">`;
+        for (let i = 0; i < qtdCafeLeite; i++) {
+            colheresLeite += 1; 
+            colheresCafe += 2;  
+            resultado.innerHTML = `Você usou ${colheresLeite} colheres de leite e ${colheresCafe} colheres de café`
         }
     }        
 </script>
 
-<style>
-    .coca-img {
-        width: 50px;
-        margin: 5px;
-    }
-</style>
+
+<!-- PESQUISAR ESSA DEPOIS - Não entendi muito bem -->
