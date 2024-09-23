@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercícios 14 - Lista 9 FOR</title>
+</head>
+<body>
+    <p>Digite sua idade:</p>
+    <input type="text" id="idade" onkeyup="contarIdade()">
+
+    <p id="resultado"></p><br>
+
+    <script>
+        function contarIdade() {
+            const idadeInput = document.getElementById('idade');
+            const idade = Number(idadeInput.value);
+            resultado.innerHTML = '';
+
+            for (let i = 0; i <= idade; i++) {
+                let fase = '';
+
+                if (i >= 0 && i <= 4) {
+                    fase = 'Primeira Infância';
+                } else if (i >= 5 && i <= 6) {
+                    fase = 'Pré-escolar';
+                } else if (i >= 7 && i <= 10) {
+                    fase = 'Segunda Infância';
+                } else if (i >= 11 && i <= 18) {
+                    fase = 'Adolescência';
+                } else if (i >= 19 && i <= 50) {
+                    fase = 'Adulto';
+                } else if (i >= 51 && i <= 100) {
+                    fase = 'Melhor idade';
+                } else if (i > 100) {
+                    fase = 'Matusalém';
+                }
+
+                resultado.innerHTML += `${i} anos (${fase})<br>`;
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 27 - Lista 9 FOR</title>
+</head>
+
+<body>
+
+    <p>Informe o limite da contagem (número positivo):</p>
+    <input type="number" id="limite_input">
+
+    <p>Informe o número para testes de divisibilidade (entre 1 e o número informado acima):</p>
+    <input type="number" id="divisor_input">
+    
+    <button onclick="somarMultiplos()">Somar Números</button>
+
+    <div id="resultado"></div>
+
+    <script>
+        function somarMultiplos() {
+            const limite = Number(limite_input.value)
+            const divisor = Number(divisor_input.value)
+
+            let soma = 0; 
+            resultado.innerHTML = ''; 
+
+            if (limite > 0 && divisor >= 1 && divisor <= limite) {
+                resultado.innerHTML = 'Múltiplos de ' + divisor + ' entre 1 e ' + limite + ':<br>';
+
+
+                for (let i = 1; i <= limite; i++) {
+                    if (i % divisor === 0) {
+                        resultado.innerHTML += i + '<br>';
+                        soma += i;
+                    }
+                }
+                resultado.innerHTML += '<br>Soma dos Múltiplos: ' + soma;
+            } else {
+                alert('Por favor, insira valores válidos. O divisor deve ser entre 1 e o limite da contagem.');
+            }
+        }
+    </script>
+</body>
+
+</html>

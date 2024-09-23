@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 25 - Lista 9 FOR</title>
+</head>
+
+<body>
+    <p>Informe um número entre 0 e 100:</p>
+    <input type="text" id="numero_input">
+    
+    <button onclick="verDivisores()">Ver Divisores</button>
+
+    <div id="resultado"></div>
+
+    <script>
+        function verDivisores() {
+            const numero = Number(numero_input.value)
+            let divisores = 0; 
+            resultado.innerHTML = ''; 
+
+            if (numero >= 0 && numero <= 100) {
+                resultado.innerHTML = 'Divisores do Número ' + numero + ':<br>';
+
+                for (var i = 1; i <= numero; i++) {
+                    if (numero % i === 0) {
+                        resultado.innerHTML += i + '<br>';
+                        divisores++; 
+                    }
+                }
+
+                if (divisores === 2) {
+                    resultado.innerHTML += '<br>O número ' + numero + ' é um número primo.';
+                }
+            } else {
+                resultado.innerHTML = 'Por favor, insira um número entre 0 e 100.';
+            }
+        }
+    </script>
+</body>
+
+</html>

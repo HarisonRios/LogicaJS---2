@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercícios 15 - Lista 9 FOR</title>
+</head>
+
+<body>
+    <p>Informe a quantidade de elefantes:</p>
+    <input type="number" id="quantidadeElefantes" min="1">
+    <button onclick="atazanarMedio()">Atazanar a médium</button>
+
+    <p id="resultado"></p><br>
+
+    <script>
+        function atazanarMedio() {
+            const quantidade = Number(quantidadeElefantes.value);
+            resultado.innerHTML = ''; 
+
+            for (let i = 2; i <= quantidade; i++) {
+                resultado.innerHTML += `1 elefante incomoda muita gente!<br>`;
+                resultado.innerHTML += `${i} elefantes, `;
+
+    
+                for (let j = 1; j <= i; j++) {
+                    resultado.innerHTML += `incomodam${j < i ? ', ' : ', muito mais!<br><br>'}`;
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
