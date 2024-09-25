@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividade Avaliativa</title>
+</head>
+
+<body>
+    <p>Qual epísodio você deseja começar a assistir a série (1 a 1100) </p>
+    <input type="number" id="episodio_numero"><br>
+
+    <p>Qual é a quantidade de tempo disponível que você tem para assistir aos episódios</p>
+    <input type="number" id="tempo_disponivel"><br>
+
+    <p>Unidade de tempo em: </p>
+    <select id="unidade_tempo">
+        <option value="horas">Horas</option>
+        <option value="minutos">Minutos</option>
+    </select><br>
+
+    <p>Você deseja pular a abertura do episódio</p>
+    <select id="pular_abertura">
+        <option value="sim">Sim</option>
+        <option value="nao">Não</option>
+    </select><br>
+
+    <p>Você desena pular o encerramento do episódio</p>
+    <select id="pular_enceramento">
+        <option value="sim">Sim</option>
+        <option value="nao">Não</option>
+    </select><br><br>
+
+    <button onclick="assistirEpisodio()">Assistir episódios</button>
+
+    <p id="resultado"></p>
+
+
+
+</body>
+
+</html>
+
+<script>
+    function assistirEpisodio() {
+        const numeroEp = Number(episodio_numero.value)
+        const tempoDisponivel = Number(tempo_disponivel.value)
+        const unidadeTempo = Number(unidade_tempo.value)
+        const pularAbertura = pular_abertura.value
+        const pularEnceramento = pular_enceramento.value
+
+
+        if (numeroEp < 1 || numeroEp > 1100) {
+            alert('O número do episódio é inválido')
+        }
+        else {
+            if(pularAbertura == 'Sim' || pularEnceramento == 'Sim'){
+
+            }
+            else if(){
+
+            } 
+            
+            for (let i = 0; i <= tempoDisponivel; i++) {
+                let fase = ''
+                if (i >= 1 && i <= 2) {
+                    fase = ' Abertura do Episódio';
+                } else if (i >= 2 && i <= 22) {
+                    fase = 'Assistindo o Episódio';
+                } else if (i >= 22 && i <= 24) {
+                    fase = 'Encerramento do Episódio';
+                }
+                
+                resultado.innerHTML = `Episódio ${numeroEp}<br>`
+                resultado.innerHTML += `Minuto ${i}: ${fase}:`
+
+            }
+
+               
+            } 
+        } 
+</script>
