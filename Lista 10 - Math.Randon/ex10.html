@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicios 10 - Lista 10</title>
+</head>
+
+<body>
+    <p>Digite aqui o numero que deseja</p>
+    <input type="text" id="valor_usuario">
+    <button onclick="geradorAleatorio()">Clique aqui</button>
+    <div id="resultado"></div>
+
+
+</body>
+
+</html>
+<script>
+    function geradorAleatorio() {
+        let valor = Number(valor_usuario.value)
+        resultado.innerHTML = ``
+
+            const numero = parseInt(Math.random() * 10 + 1)
+            if (valor == numero) {
+                resultado.innerHTML += `Você acertou numero aleatorio, ${numero}<br>`
+            } else if(valor != numero){
+                resultado.innerHTML += `Você errou, tente novamente`
+            }
+    }
+
+
+
+
+
+</script>

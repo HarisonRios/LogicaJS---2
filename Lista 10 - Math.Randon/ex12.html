@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicios 12 - Lista 10</title>
+</head>
+
+<body>
+    <p>Jogar 2 dados - Numero aleatorio entre 1 e 6</p>
+    <button onclick="geradorAleatorio()">Clique aqui</button>
+    <div id="resultado"></div>
+    <div id="resultado2"></div>
+    <div id="resultado3"></div>
+
+</body>
+
+</html>
+<script>
+    function geradorAleatorio() {
+        resultado.innerHTML = ``
+        resultado2.innerHTML = ``
+        resultado3.innerHTML = ``
+
+       
+
+        for (let i = 0; i < 10; i++) {
+            const dado1 = Math.floor(Math.random() * 6) + 1;
+            const dado2 = Math.floor(Math.random() * 6) + 1;
+            
+            
+            let soma = dado1 + dado2;
+
+            
+            if (soma % 2 === 0) {
+                resultado.innerHTML += `<br> Dado 1: <strong>${dado1}</strong> <br> Dado 2 : <strong>${dado2}</strong> <br> Soma : <strong>${soma}</strong>  é Par <br> `
+            } else {
+                resultado2.innerHTML += `<br> Dado 1: <strong>${dado1}</strong> <br> Dado 2 : <strong>${dado2}</strong> <br> Soma : <strong>${soma}</strong>  é Impar <br> `
+            }
+            
+
+            
+        }
+
+  
+        
+    }
+
+</script>
+
+<!-- A soma desses dados são ${soma} ${tipo} -->

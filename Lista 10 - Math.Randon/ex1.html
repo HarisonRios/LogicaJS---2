@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicios 1 - Lista 10</title>
+</head>
+<body>
+    <p>Numero aleatorio de 0 a 1</p>
+    <button onclick="geradorAleatorio()">Clique aqui</button>
+    <div id="resultado"></div>
+    
+</body>
+</html>
+<script>
+    function geradorAleatorio(){
+        resultado.innerHTML = ``
+        for (let contador = 1; contador <= 10; contador += 1){
+            const numero = Math.random() 
+            resultado.innerHTML += `${numero}<br>`
+        }
+    }
+
+</script>

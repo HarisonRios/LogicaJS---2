@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicios 6 - Lista 10</title>
+</head>
+<body>
+    <p>Maior ou Menor que 0.5</p>
+    <button onclick="geradorAleatorio()">Clique aqui</button>
+
+    <div id="resultado"></div>
+    
+</body>
+</html>
+<script>
+    function geradorAleatorio(){
+        resultado.innerHTML = ``
+        for (let contador = 1; contador <= 10; contador += 1){
+            const numero = Math.random()
+
+        if(numero > 0.5){
+            resultado.innerHTML += `${numero} é maior que 0.5 <br>` 
+        } else if(numero < 0.5) {
+            resultado.innerHTML += `${numero} é menor que 0.5 <br>` 
+        }
+        }
+    }
+
+</script>

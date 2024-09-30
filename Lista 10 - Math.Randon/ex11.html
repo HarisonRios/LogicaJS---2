@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicios 11 - Lista 10</title>
+</head>
+
+<body>
+    <p>Digite aqui o numero que deseja</p>
+
+    <button onclick="geradorAleatorio()">Clique aqui</button>
+    <div id="resultado"></div>
+
+
+</body>
+
+</html>
+<script>
+     function geradorAleatorio() {
+        resultado.innerHTML = ``
+        let soma = 0       
+        
+
+        for (let contador = 1; contador <= 20; contador += 1) {
+            const numero = parseInt(Math.random() * 50 + 1)     
+            resultado.innerHTML += `${numero}<br>`
+        
+            if (numero % 5 == 0) {
+                soma += numero;
+            } 
+        }
+        resultado.innerHTML += `A soma dos multiplos são ${soma}`
+
+    }
+
+
+
+
+
+</script>

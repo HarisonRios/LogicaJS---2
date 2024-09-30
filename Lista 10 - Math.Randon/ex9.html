@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicios 9 - Lista 10</title>
+</head>
+
+<body>
+    <p>10 numeros aleatorios - mostrando apenas os pares</p>
+    <button onclick="geradorAleatorio()">Clique aqui</button>
+    <br>
+    <div id="resultado"></div>
+
+
+</body>
+
+</html>
+<script>
+    function geradorAleatorio() {
+        resultado.innerHTML = ``
+
+        for (let contador = 1; contador <= 10; contador += 1) {
+            const numero = parseInt(Math.random() * 100 + 1)
+            if (numero % 2 == 0) {
+                resultado.innerHTML += `Esse numero é par ${numero}<br>`
+            } 
+        }
+    }
+
+
+
+
+
+</script>

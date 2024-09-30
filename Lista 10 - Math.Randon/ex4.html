@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicios 4 - Lista 10</title>
+</head>
+<body>
+    <p>Numero aleatorio entre 1 e 20 - Par e Impar</p>
+    <button onclick="geradorAleatorio()">Clique aqui</button>
+    <div id="resultado"></div>
+    
+</body>
+</html>
+<script>
+    function geradorAleatorio(){
+        resultado.innerHTML = ``
+        const numero = parseInt(Math.random() * 20 + 1)
+        if(numero % 2 == 0){
+            resultado.innerHTML = `Esse numero é par ${numero}<br>` 
+        } else {
+            resultado.innerHTML = `Esse numero é impar ${numero}<br>`
+        }
+
+       
+        
+    }
+
+</script>
