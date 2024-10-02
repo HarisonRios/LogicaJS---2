@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="https://www.hdicon.com/wp-content/uploads/2011/04/SaoPauloFC.png" type="image/x-icon">
+    <title>Simulação do Brasileirão - São Paulo FC</title>
+
+</head>
+
+<body>
+    <h1>Simulação das 36 Rodadas - São Paulo FC</h1>
+    <button onclick="atualizarPagina()">Atualizar Página</button>
+    <div id="resultados" class="resultados"></div>
+
+    <script>
+        function simularCampeonato() {
+            let pontosSPFC = 0;
+            resultados.innerHTML = '';
+
+            for (let rodada = 1; rodada <= 36; rodada++) {
+                let resultadoSPFC = Math.floor(Math.random() * 5);
+                let resultadoAdversario = Math.floor(Math.random() * 5);
+
+                resultados.innerHTML += `<p>Rodada ${rodada}: São Paulo ${resultadoSPFC} x ${resultadoAdversario} Adversário</p>`;
+
+                if (resultadoSPFC > resultadoAdversario) {
+                    pontosSPFC += 3;
+                    resultados.innerHTML += `<p>Resultado: Vitória do São Paulo! +3 pontos</p>`;
+                } else if (resultadoSPFC === resultadoAdversario) {
+                    pontosSPFC += 1;
+                    resultados.innerHTML += `<p>Resultado: Empate! +1 ponto</p>`;
+                } else {
+                    resultados.innerHTML += `<p>Resultado: Derrota do São Paulo! +0 pontos</p>`;
+                }
+            }
+
+            resultados.innerHTML += `<h3>Total de pontos do São Paulo no campeonato: ${pontosSPFC}</h3>`;
+        }
+
+        function atualizarPagina() {
+            location.reload();
+        }
+
+
+        simularCampeonato()
+    </script>
+</body>
+
+</html>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+
+    .resultados {
+        margin-top: 20px;
+        padding: 10px;
+        width: 300px;
+    }
+</style>
