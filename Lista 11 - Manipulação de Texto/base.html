@@ -10,145 +10,163 @@
 <body>
     <h1>Operações com Textos</h1>
     Digite uma frase:
-    <input id="input_frase" />
-    <button onclick="analisarTextos()">Analisar</button>
+    <input id="input_frase" /> <!-- Campo de entrada para o usuário digitar uma frase -->
+    <button onclick="analisarTextos()">Analisar</button> <!-- Botão que dispara a função "analisarTextos" ao ser clicado -->
     <br />
 
     Quantidade de caracteres:
     <b>
-        <span id="span_qtd_letras"></span>
+        <span id="span_qtd_letras"></span> <!-- Exibe a quantidade de caracteres da frase -->
     </b>
     <br />
 
     Começa com "a"?
     <b>
-        <span id="span_comeca_a"></span>
+        <span id="span_comeca_a"></span> <!-- Exibe "Sim" ou "Não" se a frase começar com "a" -->
     </b>
     <br />
 
     Começa com "e"?
     <b>
-        <span id="span_comeca_e"></span>
+        <span id="span_comeca_e"></span> <!-- Exibe "Sim" ou "Não" se a frase começar com "e" -->
     </b>
     <br />
 
     Termina com ".com"?
     <b>
-        <span id="span_termina_com"></span>
+        <span id="span_termina_com"></span> <!-- Exibe "Sim" ou "Não" se a frase terminar com ".com" -->
     </b>
     <br />
 
     Termina com "e"?
     <b>
-        <span id="span_termina_e"></span>
+        <span id="span_termina_e"></span> <!-- Exibe "Sim" ou "Não" se a frase terminar com "e" -->
     </b>
     <br />
 
     Termina com "@"?
     <b>
-        <span id="span_termina_arroba"></span>
+        <span id="span_termina_arroba"></span> <!-- Exibe "Sim" ou "Não" se a frase terminar com "@" -->
     </b>
     <br />
 
     Primeira letra da frase:
     <b>
-        <span id="span_primeira_letra"></span>
+        <span id="span_primeira_letra"></span> <!-- Exibe a primeira letra da frase -->
     </b>
     <br />
 
     Terceira letra da frase:
     <b>
-        <span id="span_terceira_letra"></span>
+        <span id="span_terceira_letra"></span> <!-- Exibe a terceira letra da frase -->
     </b>
     <br />
 
     Última letra da frase:
     <b>
-        <span id="span_ultima_letra"></span>
+        <span id="span_ultima_letra"></span> <!-- Exibe a última letra da frase -->
     </b>
     <br />
 
     Onde está o primeiro @?
     <b>
-        <span id="span_primeira_arroba"> </span>
+        <span id="span_primeira_arroba"> </span> <!-- Exibe o índice do primeiro "@" encontrado na frase -->
     </b>
     <br />
 
     Índice de "abc":
     <b>
-        <span id="span_indice_abc"></span>
+        <span id="span_indice_abc"></span> <!-- Exibe o índice da substring "abc" na frase -->
     </b>
     <br />
 
     Como fica em maiúsculo (CAIXA ALTA):
     <b>
-        <span id="span_maiusculo"></span>
+        <span id="span_maiusculo"></span> <!-- Exibe a frase toda em letras maiúsculas -->
     </b>
     <br />
 
     Como fica em minúsculo (caixa baixa):
     <b>
-        <span id="span_minusculo"></span>
+        <span id="span_minusculo"></span> <!-- Exibe a frase toda em letras minúsculas -->
     </b>
     <br />
 
     Frase original:
     <b>
-        <span id="span_frase_original"></span>
+        <span id="span_frase_original"></span> <!-- Exibe a frase original digitada pelo usuário -->
     </b>
     <br />
 
     Frase com @ no primeiro 'a':
     <b>
-        <span id="span_arroba_no_a"></span>
+        <span id="span_arroba_no_a"></span> <!-- Substitui todas as letras "a" por "@" na frase e exibe o resultado -->
     </b>
     <br />
 
     Frase sem espaços:
     <b>
-        <span id="span_sem_espacos"></span>
+        <span id="span_sem_espacos"></span> <!-- Remove todos os espaços da frase e exibe o resultado -->
     </b>
     <br />
 
     Frase com 4, 5 e 3:
     <b>
-        <span id="span_numeros"></span>
+        <span id="span_numeros"></span> <!-- Substitui "a" por 4, "s" por 5 e "e" por 3 na frase e exibe o resultado -->
     </b>
 </body>
 
 </html>
+
 <script>
+    // Função para realizar todas as operações com o texto inserido
     function analisarTextos() {
+        // Obtém o valor do input (a frase digitada pelo usuário)
         const frase = input_frase.value;
 
+        // Atualiza a quantidade de caracteres da frase
         span_qtd_letras.innerHTML = `${frase.length} letras`;
 
+        // Verifica se a frase começa com "a" e exibe "Sim" ou "Não"
         const fraseComecaA = frase.startsWith("a");
         span_comeca_a.innerHTML = "Não";
         if (fraseComecaA) {
             span_comeca_a.innerHTML = "Sim";
         }
 
-        span_comeca_e.innerHTML = frase.startsWith("e");
+        // Verifica se a frase começa com "e" e exibe "Sim" ou "Não"
+        span_comeca_e.innerHTML = frase.startsWith("e") ? "Sim" : "Não";
 
-        span_termina_com.innerHTML = frase.endsWith(".com");
-        span_termina_e.innerHTML = frase.endsWith("e");
-        span_termina_arroba.innerHTML = frase.endsWith("@");
+        // Verifica se a frase termina com ".com", "e" ou "@" e exibe "Sim" ou "Não"
+        span_termina_com.innerHTML = frase.endsWith(".com") ? "Sim" : "Não";
+        span_termina_e.innerHTML = frase.endsWith("e") ? "Sim" : "Não";
+        span_termina_arroba.innerHTML = frase.endsWith("@") ? "Sim" : "Não";
 
-        span_primeira_letra.innerHTML = frase[0];
-        span_terceira_letra.innerHTML = frase[2];
-        span_ultima_letra.innerHTML = frase[frase.length - 1];
+        // Exibe a primeira, terceira e última letra da frase (se disponíveis)
+        span_primeira_letra.innerHTML = frase[0] || ""; // Mostra a primeira letra, ou vazio se a frase estiver vazia
+        span_terceira_letra.innerHTML = frase[2] || ""; // Mostra a terceira letra, ou vazio se não houver
+        span_ultima_letra.innerHTML = frase[frase.length - 1] || ""; // Mostra a última letra, ou vazio se não houver
 
+        // Exibe o índice do primeiro "@" na frase ou "-1" se não houver
         span_primeira_arroba.innerHTML = frase.indexOf("@");
+
+        // Exibe o índice da string "abc" na frase ou "-1" se não houver
         span_indice_abc.innerHTML = frase.indexOf("abc");
 
+        // Converte a frase para letras maiúsculas e minúsculas e exibe o resultado
         span_maiusculo.innerHTML = frase.toUpperCase();
         span_minusculo.innerHTML = frase.toLowerCase();
 
+        // Exibe a frase original
         span_frase_original.innerHTML = frase;
 
+        // Substitui todas as ocorrências de "a" por "@" e exibe o resultado
         span_arroba_no_a.innerHTML = frase.replaceAll("a", "@");
+
+        // Remove todos os espaços da frase e exibe o resultado
         span_sem_espacos.innerHTML = frase.replaceAll(" ", "");
+
+        // Substitui "a" por 4, "s" por 5 e "e" por 3 na frase e exibe o resultado
         span_numeros.innerHTML = frase
             .replaceAll("a", "4")
             .replaceAll("s", "5")

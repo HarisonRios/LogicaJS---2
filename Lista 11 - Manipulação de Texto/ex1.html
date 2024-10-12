@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 1 - Manipulação de Texto</title>
+</head>
+<body>
+    Digite uma frase:
+    <input id="input_frase"/><br/><br/>
+    <button onclick="analisarTextos()">Analisar</button>
+    <br/><br/>
+
+
+    <p>Quantidade de caracteres:</p>
+    <span id="span_qtd_letras"></span> 
+    <p>Começa com B?</p>
+    <span id="span_comeca_b"></span>
+  
+    
+</body>
+</html>
+<script>
+     function analisarTextos() {
+        const frase = input_frase.value;
+
+        span_qtd_letras.innerHTML = `${frase.length} letras`;
+
+        const fraseComecaA = frase.startsWith("b");
+        span_comeca_b.innerHTML = "Não";
+        if (fraseComecaA) {
+            span_comeca_b.innerHTML = "Sim";
+        }
+    }
+</script>
