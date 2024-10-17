@@ -9,33 +9,35 @@
 
 <body>
     <p>Qual epísodio você deseja começar a assistir a série (1 a 1100) </p>
-    <input type="number" id="episodio_numero"><br>
+    <input type="number" id="input_ep_inicio"><br>
 
     <p>Qual é a quantidade de tempo disponível que você tem para assistir aos episódios</p>
-    <input type="number" id="tempo_disponivel"><br>
+    <input type="number" id="input_tempo_disponivel"><br>
 
     <p>Unidade de tempo em: </p>
-    <select id="unidade_tempo">
-        <option value="horas">Horas</option>
-        <option value="minutos">Minutos</option>
+    <select id="select_unidade_tempo">
+        <option value="#" disabled="" selected="">Selecione uma opção</option>
+        <option value="1">Horas</option>
+        <option value="2">Minutos</option>
     </select><br>
 
     <p>Você deseja pular a abertura do episódio</p>
-    <select id="pular_abertura">
-        <option value="sim">Sim</option>
-        <option value="nao">Não</option>
+    <select id="select_pular_abertura">
+        <option value="#" disabled="" selected="">Selecione uma opção</option>
+        <option value="1">Sim</option>
+        <option value="2">Não</option>
     </select><br>
 
     <p>Você desena pular o encerramento do episódio</p>
-    <select id="pular_enceramento">
-        <option value="sim">Sim</option>
-        <option value="nao">Não</option>
+    <select id="select_pular_encerramento">
+        <option value="#" disabled="" selected="">Selecione uma opção</option>
+        <option value="1">Sim</option>
+        <option value="2">Não</option>
     </select><br><br>
 
-    <button onclick="assistirEpisodio()">Assistir episódios</button>
+    <button onclick="assistirEpisodios()">Assistir episódios</button>
 
-    <p id="resultado"></p>
-
+<div id="div_resposta"></div>
 
 
 </body>
@@ -43,41 +45,70 @@
 </html>
 
 <script>
-    function assistirEpisodio() {
-        const numeroEp = Number(episodio_numero.value)
-        const tempoDisponivel = Number(tempo_disponivel.value)
-        const unidadeTempo = Number(unidade_tempo.value)
-        const pularAbertura = pular_abertura.value
-        const pularEnceramento = pular_enceramento.value
+    function assistirEpisodios() {
+        var ep_inicio = Number(input_ep_inicio.value);
+        var tempo_disponivel = Number(input_tempo_disponivel.value);
+        var unidade_tempo = select_unidade_tempo.value;
+        var pular_abertura = select_pular_abertura.value;
+        var pular_encerramento = select_pular_encerramento.value;
 
+        var total_tempo_episodio = 20;
+        var total_tempo_disponivel = tempo_disponivel;
+        var quantidade_episodios_assistidos = 0;
 
-        if (numeroEp < 1 || numeroEp > 1100) {
-            alert('O número do episódio é inválido')
+        div_resposta.innerHTML = "";
+
+        if (unidade_tempo == "#" || pular_abertura == "#" || pular_encerramento == "#") {
+            alert("Selecione alguma das opções para continuar");
         }
-        else {
-            if(pularAbertura == 'Sim' || pularEnceramento == 'Sim'){
 
+        else if (ep_inicio < 1 || ep_inicio > 1100) {
+            alert("O número do episódio é inválido");
+        } else {
+
+
+            if (pular_abertura == "2") {
+                total_tempo_episodio += 2;
             }
-            else if(){
 
-            } 
-            
-            for (let i = 0; i <= tempoDisponivel; i++) {
-                let fase = ''
-                if (i >= 1 && i <= 2) {
-                    fase = ' Abertura do Episódio';
-                } else if (i >= 2 && i <= 22) {
-                    fase = 'Assistindo o Episódio';
-                } else if (i >= 22 && i <= 24) {
-                    fase = 'Encerramento do Episódio';
+            if (pular_encerramento == "2") {
+                total_tempo_episodio += 2;
+            }
+
+            if (unidade_tempo == "1") {
+                total_tempo_disponivel = tempo_disponivel * 60;
+            }
+
+            quantidade_episodios_assistidos = total_tempo_disponivel / total_tempo_episodio;
+
+            for (var episodio = ep_inicio; total_tempo_disponivel > 0; episodio++) {
+
+                div_resposta.innerHTML += `<br><br><b>Assistindo episódio ${episodio}<b> <br>`;
+
+                for (var minuto = 1; minuto <= total_tempo_episodio && total_tempo_disponivel > 0; minuto++) {
+
+                    var limite_abertura = 2;
+                    var limite_encerramento = total_tempo_episodio - 2;
+
+                    if (pular_abertura == "2" && minuto <= limite_abertura) {
+                        div_resposta.innerHTML += `Minuto ${minuto}: Assistindo abertura <br>`;
+                    } else if (pular_encerramento == "2" && minuto > limite_encerramento) {
+                        div_resposta.innerHTML += `Minuto ${minuto}: Assistindo encerramento <br>`;
+                    } else {
+                        div_resposta.innerHTML += `Minuto ${minuto}: Assistindo episódio <br>`;
+                    }
+
+
+                    total_tempo_disponivel--;
                 }
-                
-                resultado.innerHTML = `Episódio ${numeroEp}<br>`
-                resultado.innerHTML += `Minuto ${i}: ${fase}:`
-
             }
+            div_resposta.innerHTML += `<br><br>Fim dos Episódios! <br>
+    Foram assistidos ${quantidade_episodios_assistidos} episódios`;
 
-               
-            } 
-        } 
+        }
+    }
+
+
+
+
 </script>

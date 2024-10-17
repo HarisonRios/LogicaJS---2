@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crie um programa que simule um sistema de operações bancárias avançado.</title>
+</head>
+
+<body>
+    <p>Conta</p>
+    <input type="text" id="input_conta">
+
+    <p>Dígito</p>
+    <input type="number" id="input_digito">
+
+    <p>Senha</p>
+    <input type="text" id="input_senha">
+
+    <button onclick="simularOperacoes()">Simular</button>
+
+    <div id="resultado"></div>
+</body>
+
+</html>
+
+
+<script>
+    function simularOperacoes() {
+        var conta = input_conta.value
+        var digito = input_digito.value
+        var senha = input_senha.value
+
+        // Comentarios para a prova, para usar essa lição de base.
+
+        // Isso aqui é a parte da conta, ela verifica primeiro se tem 6 digitos, tranforma conta em number para poder fazer os calculos, dps verifica se o 1 e 2 digito e par e soma, dps multiplica por um numero aleatorio entre 2 e 5 e mostra o resultado.
+
+        // Conta
+
+        if (conta.length === 6) {
+            resultado.innerHTML = `A sua conta tem 6 dígitos.<br>`;
+
+            conta = Number(conta);
+
+            var contaStr = input_conta.value;
+
+            if ((Number(contaStr[0]) + Number(contaStr[1])) % 2 === 0) {
+                resultado.innerHTML += `A soma dos dois primeiros dígitos é par: ${Number(contaStr[0]) + Number(contaStr[1])}<br>`;
+            } else {
+                resultado.innerHTML += `Por favor, Digite numeros pares<br>`;
+            }
+
+            var aleatorio = Math.floor(Math.random() * 4) + 2;
+            var resultadoMultiplicacao = contaStr * aleatorio;
+
+            resultado.innerHTML += `O valor de ${contaStr} foi multiplicado por ${aleatorio} = ${resultadoMultiplicacao} <br>`;
+
+
+
+            // Digito
+
+            // Nessa parte aqui a varivael ulitmo digito recebe o resultado da multiplicacao e tranforma em string para poder usar o .length e o menos 1 serve para pegar o ultimo digito blz, ai dps eu comparo se o ultimo digito for igual ao digito informado. (tranformado em number para poder comparar) se sim mostra na tela so para teste, se não mostra o alert
+
+
+
+            var resultadoStr = resultadoMultiplicacao.toString();
+            var ultimoDigito = resultadoStr[resultadoStr.length - 1];
+
+            if (digito === ultimoDigito) {
+                resultado.innerHTML += `O dígito informado corresponde à conta - ${digito} <br>`;
+            } else {
+                alert(`O dígito informado não corresponde à conta.`);
+            }
+
+
+            // Senha
+
+
+
+            if (senha.length >= 12) {
+
+                var palavraAleatoriaIndex = Math.floor(Math.random() * 3);
+                var palavraAleatoria;
+
+                if (palavraAleatoriaIndex === 0) {
+                    palavraAleatoria = 'Alfa';
+                } else if (palavraAleatoriaIndex === 1) {
+                    palavraAleatoria = 'Beta';
+                } else {
+                    palavraAleatoria = 'Gama';
+                }
+
+
+                const caracteresEspeciais = "!@&#";
+                var caractere1 = caracteresEspeciais[Math.floor(Math.random() * caracteresEspeciais.length)];
+                var caractere2 = caracteresEspeciais[Math.floor(Math.random() * caracteresEspeciais.length)];
+
+
+                var numeroAleatorio1 = Math.floor(Math.random() * 13) + 3; // de 3 A 15 o math.random
+                var numeroAleatorio2 = Math.floor(Math.random() * 13) + 3;
+
+
+                var senhaCompleta = `${caractere1}${senha}${palavraAleatoria}${numeroAleatorio1}${caractere2}${numeroAleatorio2}`;
+
+
+                resultado.innerHTML += `A sua senha gerada é: ${senhaCompleta}`;
+
+
+                var coeficiente = Math.floor(Math.random() * 100) + 1
+
+                if (coeficiente < 40) {
+                    resultado.innerHTML = `Risco alto operação não permitida.`
+                } else if (coeficiente > 40 && coeficiente < 70) {
+                    resultado.innerHTML = `Operação com certo grau de risco, continue...`
+                } else if (coeficiente > 70) {
+                    resultado.innerHTML = `Operação segura.`
+                }
+
+            } else {
+                alert("A senha deve ter no mínimo 12 caracteres.");
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+        } else {
+            alert(`A sua conta não tem 6 dígitos`);
+        }
+
+
+
+
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+</script>

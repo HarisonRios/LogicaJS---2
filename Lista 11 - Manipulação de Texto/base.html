@@ -119,9 +119,7 @@
 </html>
 
 <script>
-    // Função para realizar todas as operações com o texto inserido
     function analisarTextos() {
-        // Obtém o valor do input (a frase digitada pelo usuário)
         const frase = input_frase.value;
 
         // Atualiza a quantidade de caracteres da frase
@@ -144,7 +142,9 @@
 
         // Exibe a primeira, terceira e última letra da frase (se disponíveis)
         span_primeira_letra.innerHTML = frase[0] || ""; // Mostra a primeira letra, ou vazio se a frase estiver vazia
+        
         span_terceira_letra.innerHTML = frase[2] || ""; // Mostra a terceira letra, ou vazio se não houver
+
         span_ultima_letra.innerHTML = frase[frase.length - 1] || ""; // Mostra a última letra, ou vazio se não houver
 
         // Exibe o índice do primeiro "@" na frase ou "-1" se não houver
