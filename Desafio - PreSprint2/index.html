@@ -15,15 +15,19 @@
     <input type="number" id="input_digito">
 
     <p>Senha</p>
-    <input type="text" id="input_senha">
+    <input type="text" id="input_senha"><br><br>
 
-    <button onclick="simularOperacoes()">Simular</button>
+    <button onclick="simularOperacoes()">Simular</button><br><br>
 
-    <div id="resultado"></div>
+    <p>Informações sobre o Acesso a Conta:</p>
+    <div id="resultado"><br></div><br>
+
+    <p>Informações depois da Operação:</p>
+    <div id="resultado2"></div>
+
 </body>
 
 </html>
-
 
 <script>
     function simularOperacoes() {
@@ -31,127 +35,157 @@
         var digito = input_digito.value
         var senha = input_senha.value
 
-        // Comentarios para a prova, para usar essa lição de base.
-
-        // Isso aqui é a parte da conta, ela verifica primeiro se tem 6 digitos, tranforma conta em number para poder fazer os calculos, dps verifica se o 1 e 2 digito e par e soma, dps multiplica por um numero aleatorio entre 2 e 5 e mostra o resultado.
-
-        // Conta
-
         if (conta.length === 6) {
-            resultado.innerHTML = `A sua conta tem 6 dígitos.<br>`;
+            resultado.innerHTML = `A sua conta tem 6 dígitos.<br>`
 
-            conta = Number(conta);
-
-            var contaStr = input_conta.value;
-
-            if ((Number(contaStr[0]) + Number(contaStr[1])) % 2 === 0) {
-                resultado.innerHTML += `A soma dos dois primeiros dígitos é par: ${Number(contaStr[0]) + Number(contaStr[1])}<br>`;
-            } else {
-                resultado.innerHTML += `Por favor, Digite numeros pares<br>`;
+            var soma = 0
+            for (var i = 0; i < 2; i++) {
+                soma += Number(conta[i])
             }
 
-            var aleatorio = Math.floor(Math.random() * 4) + 2;
-            var resultadoMultiplicacao = contaStr * aleatorio;
+            if (soma % 2 === 0) {
+                resultado.innerHTML += `A soma dos dois primeiros dígitos é par: ${soma}<br>`
+            } else {
+                resultado.innerHTML += `Por favor, digite números pares.<br>`
+                return
+            }
 
-            resultado.innerHTML += `O valor de ${contaStr} foi multiplicado por ${aleatorio} = ${resultadoMultiplicacao} <br>`;
+            var aleatorio = Math.floor(Math.random() * 4) + 2
+            var resultadoMultiplicacao = conta * aleatorio
+            resultado.innerHTML += `O valor de ${conta} foi multiplicado por ${aleatorio} = ${resultadoMultiplicacao}<br>`
 
-
-
-            // Digito
-
-            // Nessa parte aqui a varivael ulitmo digito recebe o resultado da multiplicacao e tranforma em string para poder usar o .length e o menos 1 serve para pegar o ultimo digito blz, ai dps eu comparo se o ultimo digito for igual ao digito informado. (tranformado em number para poder comparar) se sim mostra na tela so para teste, se não mostra o alert
-
-
-
-            var resultadoStr = resultadoMultiplicacao.toString();
-            var ultimoDigito = resultadoStr[resultadoStr.length - 1];
+            var resultadoStr = resultadoMultiplicacao.toString()
+            var ultimoDigito = resultadoStr[resultadoStr.length - 1]
 
             if (digito === ultimoDigito) {
-                resultado.innerHTML += `O dígito informado corresponde à conta - ${digito} <br>`;
+                resultado.innerHTML += `O dígito informado corresponde à conta - ${digito}<br>`
             } else {
-                alert(`O dígito informado não corresponde à conta.`);
+                alert(`O dígito informado não corresponde à conta.`)
+                return
             }
-
-
-            // Senha
-
-
 
             if (senha.length >= 12) {
+                var palavraAleatoriaIndex = Math.floor(Math.random() * 3)
+                var palavraAleatoria = ['Alfa', 'Beta', 'Gama'][palavraAleatoriaIndex]
 
-                var palavraAleatoriaIndex = Math.floor(Math.random() * 3);
-                var palavraAleatoria;
+                const caracteresEspeciais = "!@&#"
+                var caractere1 = caracteresEspeciais[Math.floor(Math.random() * caracteresEspeciais.length)]
+                var caractere2 = caracteresEspeciais[Math.floor(Math.random() * caracteresEspeciais.length)]
 
-                if (palavraAleatoriaIndex === 0) {
-                    palavraAleatoria = 'Alfa';
-                } else if (palavraAleatoriaIndex === 1) {
-                    palavraAleatoria = 'Beta';
-                } else {
-                    palavraAleatoria = 'Gama';
-                }
+                var numeroAleatorio1 = Math.floor(Math.random() * 13) + 3
+                var numeroAleatorio2 = Math.floor(Math.random() * 13) + 3
 
+                var senhaCompleta = `${caractere1}${senha}${palavraAleatoria}${numeroAleatorio1}${caractere2}${numeroAleatorio2}`
 
-                const caracteresEspeciais = "!@&#";
-                var caractere1 = caracteresEspeciais[Math.floor(Math.random() * caracteresEspeciais.length)];
-                var caractere2 = caracteresEspeciais[Math.floor(Math.random() * caracteresEspeciais.length)];
-
-
-                var numeroAleatorio1 = Math.floor(Math.random() * 13) + 3; // de 3 A 15 o math.random
-                var numeroAleatorio2 = Math.floor(Math.random() * 13) + 3;
-
-
-                var senhaCompleta = `${caractere1}${senha}${palavraAleatoria}${numeroAleatorio1}${caractere2}${numeroAleatorio2}`;
-
-
-                resultado.innerHTML += `A sua senha gerada é: ${senhaCompleta}`;
-
-
-                var coeficiente = Math.floor(Math.random() * 100) + 1
-
-                if (coeficiente < 40) {
-                    resultado.innerHTML = `Risco alto operação não permitida.`
-                } else if (coeficiente > 40 && coeficiente < 70) {
-                    resultado.innerHTML = `Operação com certo grau de risco, continue...`
-                } else if (coeficiente > 70) {
-                    resultado.innerHTML = `Operação segura.`
-                }
-
+                resultado.innerHTML += `A sua senha gerada é: ${senhaCompleta}<br>`
             } else {
-                alert("A senha deve ter no mínimo 12 caracteres.");
+                alert("A senha deve ter no mínimo 12 caracteres.")
+                return
             }
 
+            var coeficiente = Math.floor(Math.random() * 100) + 1
 
+            if (coeficiente < 40) {
+                resultado.innerHTML = "<strong>Risco alto, operação não permitida.<br>"
+                return
+            } else if (coeficiente >= 40 && coeficiente <= 70) {
+                resultado2.innerHTML = ''
+                resultado.innerHTML = "<strong>Operação com certo grau de risco, continue...<br>"
 
+                resultado2.innerHTML += `
+                <div>
+                    <label for="valor">Valor:</label>
+                    <input type="number" id="valor_input" placeholder="Digite o valor">
+                </div>
 
+                <div>
+                    <label for="operacao">Operação:</label>
+                    <select id="operacao_input">
+                        <option value="emprestimo">Empréstimo</option>
+                        <option value="investimento">Investimento</option>
+                    </select>
+                </div>
 
+                <div>
+                    <label for="prazo">Prazo:</label>
+                    <select id="prazo_input">
+                        <option value="3">3 meses</option>
+                        <option value="6">6 meses</option>
+                        <option value="12">12 meses</option>
+                    </select>
+                </div><br>
 
+                <div>
+                    <button onclick="calcularValor()">Calcular</button>
+                </div>
+            `
 
+            } else {
+                resultado2.innerHTML = ''
+                resultado.innerHTML = "<strong>Operação segura.<br>"
 
+                resultado2.innerHTML += `
+                <div>
+                    <label for="valor">Valor:</label>
+                    <input type="number" id="valor_input" placeholder="Digite o valor">
+                </div>
 
+                <div>
+                    <label for="operacao">Operação:</label>
+                    <select id="operacao_input">
+                        <option value="emprestimo">Empréstimo</option>
+                        <option value="investimento">Investimento</option>
+                    </select>
+                </div>
 
+                <div>
+                    <label for="prazo">Prazo:</label>
+                    <select id="prazo_input">
+                        <option value="3">3 meses</option>
+                        <option value="6">6 meses</option>
+                        <option value="12">12 meses</option>
+                    </select>
+                </div><br>
 
-
-
+                <div>
+                    <button onclick="calcularValor()">Calcular</button>
+                </div>
+            `
+            }
         } else {
-            alert(`A sua conta não tem 6 dígitos`);
+            alert("A conta deve ter 6 dígitos.")
         }
-
-
-
-
-
-
     }
 
 
+    function calcularValor() {
+        var valor = Number(valor_input.value)
+        var operacao = operacao_input.value
+        var prazo = Number(prazo_input.value)
 
+        if (operacao === "emprestimo") {
+            if (prazo === 12) {
+                taxaJuros = 0.24
+            } else if (prazo === 6) {
+                taxaJuros = 0.16
+            } else if (prazo === 3) {
+                taxaJuros = 0.10
+            }
+            valorAtualizado = valor + (valor * taxaJuros)
 
+            resultado2.innerHTML += `<br>Mês ${prazo} Para o empréstimo de R$${valor} no prazo de ${prazo} meses, o valor atualizado com juros será de R$${valorAtualizado.toFixed(2)}.<br>`
 
+        } else if (operacao === "investimento") {
+            if (prazo === 12) {
+                taxaInvestimento = 0.13
+            } else if (prazo === 6) {
+                taxaInvestimento = 0.09
+            } else if (prazo === 3) {
+                taxaInvestimento = 0.04
+            }
+            valorAtualizado = valor + (valor * taxaInvestimento)
 
-
-
-
-
-
-
+            resultado2.innerHTML += `<br>Mês ${prazo} Para o investimento de R$${valor} no prazo de ${prazo} meses, o valor atualizado será de R$${valorAtualizado.toFixed(2)}.<br>`
+        }
+    }
 </script>
