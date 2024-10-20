@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulação de Operações Bancárias</title>
+</head>
+
+<body>
+    <p>Conta</p>
+    <input type="text" id="input_conta">
+
+    <p>Dígito</p>
+    <input type="number" id="input_digito">
+
+    <p>Senha</p>
+    <input type="text" id="input_senha"><br><br>
+
+    <button onclick="simularOperacoes()">Simular</button><br><br>
+
+
+    <p>Informações sobre o Acesso a Conta:</p>
+    <div id="resultado"></div><br>
+
+    <p>Informações depois da Operação:</p>
+    <div id="resultado2"></div>
+
+    <script>
+        function simularOperacoes() {
+            // Captura o valor dos inputs de conta, dígito e senha
+            var conta = input_conta.value;
+            var digito = input_digito.value;
+            var senha = input_senha.value;
+
+            // Limpa os campos de resultado da operação anterior
+            resultado.innerHTML = "";
+            resultado2.innerHTML = "";
+
+            // Verifica se a conta possui exatamente 6 dígitos
+            if (conta.length === 6) {
+                resultado.innerHTML += `A sua conta tem 6 dígitos.<br>`;
+
+                // Soma os dois primeiros dígitos da conta
+                var soma = 0;
+                soma += Number(conta.charAt(0)) + Number(conta.charAt(1));
+
+                // Verifica se a soma dos dois primeiros dígitos é par
+                if (soma % 2 === 0) {
+                    resultado.innerHTML += `A soma dos dois primeiros dígitos é par: ${soma}<br>`;
+                } else {
+                    resultado.innerHTML += `Por favor, digite números pares.<br>`;
+                    return;  // Encerra a função se a soma não for par
+                }
+
+                // Gera um número aleatório entre 2 e 5
+                var aleatorio = Math.floor(Math.random() * 4) + 2;
+                // Multiplica o valor da conta por esse número aleatório
+                var resultadoMultiplicacao = Number(conta) * aleatorio;
+                resultado.innerHTML += `O valor de ${conta} foi multiplicado por ${aleatorio} = ${resultadoMultiplicacao}<br>`;
+
+                // Pega o último dígito do resultado da multiplicação
+                var ultimoDigito = String(resultadoMultiplicacao).charAt(String(resultadoMultiplicacao).length - 1);
+
+                // Verifica se o dígito informado corresponde ao último dígito da multiplicação
+                if (digito === ultimoDigito) {
+                    resultado.innerHTML += `O dígito informado corresponde à conta - ${digito}<br>`;
+                } else {
+                    alert(`O dígito informado não corresponde à conta.`);
+                    return;  // Encerra a função se o dígito não coincidir
+                }
+
+                // Verifica se a senha possui pelo menos 12 caracteres
+                if (senha.length >= 12) {
+                    var palavraAleatoria;
+                    // Gera um número aleatório para escolher uma palavra sem vetor
+                    var aleatorioPalavra = Math.floor(Math.random() * 3);
+                    
+                    // Seleciona a palavra com base no número gerado
+                    if (aleatorioPalavra === 0) {
+                        palavraAleatoria = 'Alfa';
+                    } else if (aleatorioPalavra === 1) {
+                        palavraAleatoria = 'Beta';
+                    } else {
+                        palavraAleatoria = 'Gama';
+                    }
+
+                    // Seleciona dois caracteres especiais aleatórios
+                    const caracteresEspeciais = "!@&#";
+                    var caractere1 = caracteresEspeciais.charAt(Math.floor(Math.random() * caracteresEspeciais.length));
+                    var caractere2 = caracteresEspeciais.charAt(Math.floor(Math.random() * caracteresEspeciais.length));
+
+                    // Gera dois números aleatórios para usar na senha gerada
+                    var numeroAleatorio1 = Math.floor(Math.random() * 13) + 3;
+                    var numeroAleatorio2 = Math.floor(Math.random() * 13) + 3;
+
+                    // Cria a nova senha com os caracteres especiais e palavras aleatórias
+                    var senhaCompleta = caractere1 + senha + palavraAleatoria + numeroAleatorio1 + caractere2 + numeroAleatorio2;
+
+                    resultado.innerHTML += `A sua senha gerada é: ${senhaCompleta}<br>`;
+                } else {
+                    alert("A senha deve ter no mínimo 12 caracteres.");
+                    return;  // Encerra a função se a senha não tiver 12 caracteres
+                }
+
+                // Gera um coeficiente aleatório entre 1 e 100 para decidir o nível de risco
+                var coeficiente = Math.floor(Math.random() * 100) + 1;
+
+                // Avalia o risco da operação com base no coeficiente gerado
+                if (coeficiente < 40) {
+                    resultado.innerHTML = "<strong>Risco alto, operação não permitida.<br>";
+                    return;  // Encerra se o risco for alto
+                } else if (coeficiente >= 40 && coeficiente <= 70) {
+                    resultado2.innerHTML = '';
+                    resultado.innerHTML = "<strong>Operação com certo grau de risco, continue...<br>";
+
+                    // Adiciona os campos para simulação da operação
+                    adicionarCamposOperacao();
+                } else {
+                    resultado2.innerHTML = '';
+                    resultado.innerHTML = "<strong>Operação segura.<br>";
+
+                    // Adiciona os campos para simulação da operação
+                    adicionarCamposOperacao();
+                }
+            } else {
+                alert("A conta deve ter 6 dígitos.");
+            }
+        }
+
+        // Função para adicionar os campos de valor, operação e prazo
+        function adicionarCamposOperacao() {
+            resultado2.innerHTML = `
+                <div>
+                    <label for="valor">Valor:</label>
+                    <input type="number" id="valor_input" placeholder="Digite o valor">
+                </div>
+
+                <div>
+                    <label for="operacao">Operação:</label>
+                    <select id="operacao_input">
+                        <option value="emprestimo">Empréstimo</option>
+                        <option value="investimento">Investimento</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="prazo">Prazo:</label>
+                    <select id="prazo_input">
+                        <option value="3">3 meses</option>
+                        <option value="6">6 meses</option>
+                        <option value="12">12 meses</option>
+                    </select>
+                </div><br>
+
+                <div>
+                    <button onclick="calcularValor()">Calcular</button>
+                </div>
+            `;
+        }
+
+        // Função para calcular o valor de empréstimo ou investimento
+        function calcularValor() {
+            var valor = valor_input.value;  // Captura o valor informado
+            var operacao = operacao_input.value;  // Captura o tipo de operação (empréstimo ou investimento)
+            var prazo = prazo_input.value;  // Captura o prazo escolhido
+
+            // Se a operação for um empréstimo
+            if (operacao === "emprestimo") {
+                var taxaJuros;
+                // Define a taxa de juros com base no prazo
+                if (prazo == 12) {
+                    taxaJuros = 0.24;
+                } else if (prazo == 6) {
+                    taxaJuros = 0.16;
+                } else if (prazo == 3) {
+                    taxaJuros = 0.10;
+                }
+                // Calcula o valor atualizado com juros
+                var valorAtualizado = valor * (1 + taxaJuros);
+
+                // Exibe o resultado do valor com juros
+                resultado2.innerHTML += `<br>Para o empréstimo de R$${valor} no prazo de ${prazo} meses, o valor atualizado com juros será de R$${valorAtualizado.toFixed(2)}.<br>`;
+            } 
+            // Se a operação for um investimento
+            else if (operacao === "investimento") {
+                var taxaInvestimento;
+                // Define a taxa de rendimento com base no prazo
+                if (prazo == 12) {
+                    taxaInvestimento = 0.13;
+                } else if (prazo == 6) {
+                    taxaInvestimento = 0.09;
+                } else if (prazo == 3) {
+                    taxaInvestimento = 0.04;
+                }
+                // Calcula o valor atualizado com o rendimento
+                var valorAtualizado = valor * (1 + taxaInvestimento);
+
+                // Exibe o resultado do valor com rendimento
+                resultado2.innerHTML += `<br>Para o investimento de R$${valor} no prazo de ${prazo} meses, o valor atualizado será de R$${valorAtualizado.toFixed(2)}.<br>`
+                }
+        
+                }
