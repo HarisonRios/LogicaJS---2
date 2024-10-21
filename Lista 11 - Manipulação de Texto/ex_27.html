@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    Informe um número:
+    <input id="input_numero"><br>
+    Informe um segundo número:
+    <input id="input_segundo_numero"><br>
+    <button onclick="somarNumeros()">
+        Somar Números
+    </button>
+    <div id="div_resultado"></div>
+</body>
+</html>
+
+<script>
+    function somarNumeros() {
+        var limite = Number(input_numero.value)
+        var divisor = Number(input_segundo_numero.value)
+
+        // for (
+        //     var numeroAtual = 1;
+        //     (divisor * numeroAtual) <= limite;
+        //     numeroAtual += 1
+        // ) {
+        //     div_resultado.innerHTML += `${divisor * numeroAtual}<br>`     
+        // }
+
+        // for (
+        //     var numeroAtual = divisor;
+        //     numeroAtual <= limite;
+        //     numeroAtual += divisor
+        // ) {
+        //     div_resultado.innerHTML += `${numeroAtual}<br>`     
+        // }
+
+        // 1...20
+        var somatoriaMultiplos = 0
+        for (
+            var numeroAtual = 1;
+            numeroAtual <= limite;
+            numeroAtual += 1
+        ) {
+            const numeroAtualMultiplo = numeroAtual % divisor == 0
+            if (numeroAtualMultiplo) {
+                somatoriaMultiplos += numeroAtual
+                div_resultado.innerHTML += `${numeroAtual}<br>`
+                for (
+                    var numeroAdicional = 1;
+                    numeroAdicional <= numeroAtual;
+                    numeroAdicional += 1
+                ) {
+                    div_resultado.innerHTML += `${numeroAdicional} `
+                }
+
+                div_resultado.innerHTML += "<br>"
+            }            
+        }
+
+
+        div_resultado.innerHTML += `Soma dos Múltiplos: ${somatoriaMultiplos}`
+    }
+</script>
