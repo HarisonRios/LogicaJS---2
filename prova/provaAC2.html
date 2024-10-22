@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    Selecione o Serviço: <select id="select_servico">
+        <option value="#">Escolha uma opção</option>
+        <option value="manicure">Manicure</option>
+        <option value="barba">Barba</option>
+        <option value="cabelo">Cabelo</option>
+    </select> <br>
+
+
+    Selecione o Dia: <select id="select_dia">
+        <option value="#">Escolha uma opção</option>
+        <option value="segunda"> Segunda-feira </option>
+        <option value="terça"> Terça-feira </option>
+        <option value="quarta"> Quarta-feira </option>
+        <option value="quinta"> Quinta-feira </option>
+        <option value="sexta"> Sexta-feira </option>
+        <option value="sábado"> Sábado </option>
+        <option value="domingo"> Domingo </option>
+    </select> <br>
+
+    Selecione o Horário: <select id="select_horario">
+        <option value="#">Escolha uma opção</option>
+        <option value="0"> 00:00h </option>
+        <option value="1"> 01:00h </option>
+        <option value="2"> 02:00h </option>
+        <option value="3"> 03:00h </option>
+        <option value="4"> 04:00h </option>
+        <option value="5"> 05:00h </option>
+        <option value="6"> 06:00h </option>
+        <option value="7"> 07:00h </option>
+        <option value="8"> 08:00h </option>
+        <option value="9"> 09:00h </option>
+        <option value="10"> 10:00h </option>
+        <option value="11"> 11:00h </option>
+        <option value="12"> 12:00h </option>
+        <option value="13"> 13:00h </option>
+        <option value="14"> 14:00h </option>
+        <option value="15"> 15:00h </option>
+        <option value="16"> 16:00h </option>
+        <option value="17"> 17:00h </option>
+        <option value="18"> 18:00h </option>
+        <option value="19"> 19:00h </option>
+        <option value="20"> 20:00h </option>
+        <option value="21"> 21:00h </option>
+        <option value="22"> 22:00h </option>
+        <option value="23"> 23:00h </option>
+    </select> <br>
+
+    Qual será a recorrência de atendimentos em 1 ano? <input type="number" id="input_recorrencia"> <br>
+
+    <button onclick="realizar()">Realizar Orçamento</button><br>
+
+    <div id="div_resultado"></div>
+
+</body>
+
+</html>
+
+<script>
+
+
+    function realizar() {
+        var servico = select_servico.value
+        var dia = select_dia.value
+        var horario = select_horario.value
+        var recorrencia = input_recorrencia.value
+
+        if (servico === '' || dia === '' || horario === '' || recorrencia === '') {
+            div_resultado.innerHTML = 'Preencha todos os campos!'
+        } else {
+            
+
+        if (servico == "manicure") {
+            const horarioDisponivelInicio = 9
+            const horarioDisponivelFim = 17 
+
+            if (horario >= horarioDisponivelInicio && horario < horarioDisponivelFim) {
+                 div_resultado.innerHTML = ("Serviço disponível no horário solicitado. <br>")
+            } else {
+                div_resultado.innerHTML = ("O serviço selecionado não está disponível para esse horário (Manicure)")
+            }
+        } else if (servico == "barba"){
+            const horarioDisponivelInicioB = 13
+            const horarioDisponivelFimB = 20
+
+            if(horario >= horarioDisponivelInicioB && horario < horarioDisponivelFimB){
+                div_resultado.innerHTML = ("Serviço disponível no horario solicitado. <br>")
+            } else {
+                div_resultado.innerHTML = ("O serviço selecionado não está disponível para esse horário (Barba)")
+            }
+        } else if (servico == "cabelo"){
+            const horarioDisponivelInicioC = 0
+            const horarioDisponivelFimC = 23
+
+            if(horario >= horarioDisponivelInicioC && horario < horarioDisponivelFimC){
+                div_resultado.innerHTML = ("Serviço disponível no horario solicitado. <br>")
+            } else {
+                div_resultado.innerHTML = ("O serviço selecionado não está disponível para esse horário (Cabelo)")
+            }
+        } 
+    }
+
+
+    var manicure = 20
+    var barba = 15
+    var cabelo = 30
+
+    
+    // if(servico == "manicure" && recorrencia == 3){
+    //     div_resultado.innerHTML += `Direito a gratuidade`
+
+    // } else if(servico == "barba" && recorrencia == 4){
+    //     div_resultado.innerHTML += `Direito a gratuidade`
+    // } else if(servico == "cabelo" && recorrencia == 6 )
+    //     div_resultado.innerHTML += `Direito a gratuidade`
+
+
+
+
+    
+
+
+    div_resultado.innerHTML = ``
+    for (let contador = 1; contador <= recorrencia; contador += 1) {
+        let totalPrecoFinal = 0
+        let quantidadeGratis = 0
+
+
+        if ((servico === "manicure") && (dia === "terça" || dia === "quinta")) {
+            const desconto = 4;
+            const valorcomDesconto = manicure - desconto;
+            const valorFidelidade = 0
+            
+      
+            totalPrecoFinal += valorcomDesconto;
+
+            div_resultado.innerHTML += `Atendimento ${contador} - Serviço: ${servico} | Dia: ${dia} | Hora: ${horario} | Preço Serviço: ${manicure} | Desconto: ${desconto} | Preço Final: ${valorcomDesconto}<br>`;
+            
+            if (contador % 2 === 0) {
+                div_resultado.innerHTML += `Atendimento ${contador} - Serviço: ${servico} | Dia: ${dia} | Hora: ${horario} | Preço Serviço: ${valorFidelidade} | Desconto: ${valorFidelidade} | Preço Final: ${valorFidelidade}<br>`;
+                quantidadeGratis++; 
+            }
+            
+
+    
+    }
+    
+     else if(servico == "barba" && dia == "segunda" || dia == "quarta") {
+        const descontoBarba = 3
+        var valorcomDescontoBarba = barba - descontoBarba
+        const valorFidelidadeBarba = 0
+
+
+        totalPrecoFinal += valorcomDesconto
+
+
+        div_resultado.innerHTML  += `Atendimento ${contador} - Serviço: ${servico} | Dia: ${dia} | Hora: ${horario} | Preço Serviço: ${barba} | Desconto: ${descontoBarba} | Preço Final: ${valorcomDescontoBarba}<br>` 
+        
+        if (contador % 3 === 0) {
+            div_resultado.innerHTML += `Atendimento ${contador} - Serviço: ${servico} | Dia: ${dia} | Hora: ${horario} | Preço Serviço: ${valorFidelidadeBarba} | Desconto: ${valorFidelidadeBarba} | Preço Final: ${valorFidelidadeBarba}<br>`;
+            quantidadeGratis++; 
+        }
+    }
+
+
+     else if(servico == "cabelo" && dia == "sexta" || dia == "sábado" || dia == "domingo"){
+        const descontoCabelo = 5
+        var valorcomDescontoCabelo = cabelo - descontoCabelo
+        const valorFidelidadeCabelo = 0
+        
+        totalPrecoFinal += valorcomDesconto
+          
+        
+        div_resultado.innerHTML  += `Atendimento ${contador} - Serviço: ${servico} | Dia: ${dia} | Hora: ${horario} | Preço Serviço: ${cabelo} | Desconto: R$ ${descontoCabelo} | Preço Final: R$ ${valorcomDescontoCabelo}<br>`  
+
+        if (contador % 5 === 0) {
+            div_resultado.innerHTML += `Atendimento ${contador} - Serviço: ${servico} | Dia: ${dia} | Hora: ${horario} | Preço Serviço: ${valorFidelidadeCabelo} | Desconto: R$ ${valorFidelidadeCabelo} | Preço Final: R$ ${valorFidelidadeCabelo}<br>`;
+            quantidadeGratis++; 
+        }
+    }
+}
+
+  div_resultado.innerHTML += `"Ao longo do ano, você será atendido ${recorrencia} vezes, sendo ${quantidadeGratis} serviços grátis devido à fidelidade, onde o valor final do orçamento será de ${totalPrecoFinal}." `
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+    }
+
+
+
+
+</script>

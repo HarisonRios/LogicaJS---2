@@ -42,6 +42,37 @@
                 alert('Por favor, insira valores válidos. O divisor deve ser entre 1 e o limite da contagem.');
             }
         }
+
+        
+
+
+
+
+        let totalPrecoFinal = 0;
+let quantidadeGratis = 0; // Declare aqui
+
+for (let contador = 1; contador <= recorrencia; contador += 1) {
+    if ((servico === "manicure") && (dia === "terça" || dia === "quinta")) {
+        const desconto = 4;
+        const valorcomDesconto = manicure - desconto;
+        const valorFidelidade = 0;
+        
+        totalPrecoFinal += valorcomDesconto;
+
+        div_resultado.innerHTML += `Atendimento ${contador} - Serviço: ${servico} | Dia: ${dia} | Hora: ${horario} | Preço Serviço: ${manicure} | Desconto: ${desconto} | Preço Final: ${valorcomDesconto}<br>`;
+        
+        if (contador % 2 === 0) {
+            div_resultado.innerHTML += `Atendimento ${contador} - Serviço: ${servico} | Dia: ${dia} | Hora: ${horario} | Preço Serviço: ${valorFidelidade} | Desconto: ${valorFidelidade} | Preço Final: ${valorFidelidade}<br>`;
+            quantidadeGratis++; // Incrementa aqui
+        }
+    }
+}
+
+// Após o loop
+div_resultado.innerHTML += `Total Preço Final: ${totalPrecoFinal}<br>`;
+div_resultado.innerHTML += `Quantidade de Atendimentos Grátis: ${quantidadeGratis}<br>`;
+
+
     </script>
 </body>
 
