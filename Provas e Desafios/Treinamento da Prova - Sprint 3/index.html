@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Treino - Prova</title>
+</head>
+<body>
+    <p>Energia Disponível: </p>
+    <input type="text" id="energia_disponivel">
+    <p>Quantidade de Clones: </p>
+    <input type="text" id="qtd_clones">
+    <p>Clones por Linha: </p>
+    <input type="text" id="clones_linha"><br><br>
+    
+    <button onclick="criarClones()">Criar Clones</button>
+
+    <div id="resultadoNaruto"></div>
+    <div id="mensagem"></div>
+</body>
+</html>
+
+<script>
+    function criarClones(){
+        var energiaDisponivel = energia_disponivel.value
+        var qtdClone = qtd_clones.value
+        var clonesLinha = clones_linha.value
+
+       
+
+       if(energiaDisponivel >= 20 || energiaDisponivel < 5.000 && qtdClone >= 0 || qtdClone < 250 && clonesLinha > 0){
+         if(energiaDisponivel < 20){
+            alert('ENERGIA INSUFICIENTE – Naruto não tem energia suficiente para criar essa quantidade de clones')
+            return
+         }
+
+       
+
+         for (let i = 1; i <= qtdClone; i++) {
+            if(i % clonesLinha == 1 ){
+                resultadoNaruto.innerHTML += `<br>`
+            }
+             resultadoNaruto.innerHTML += `<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRu_atPhURS78TBGA-mHYiyKvfaHjp5r_xYOA&s" class="naruto">`
+        }
+
+
+     var sobraEnergia = energiaDisponivel - (qtdClone * 20)
+     var percentualSobra = (sobraEnergia / energiaDisponivel) * 100
+       
+     if(sobraEnergia > 1000 || qtdClone > 50 || percentualSobra > 0.2){
+        mensagem.innerHTML += `ANÁLISE DA GERAÇÃO DE CLONES<br>`
+         mensagem.innerHTML += `Inicial: ${energiaDisponivel} <br>`
+         mensagem.innerHTML += `Quantidade de Clones: ${qtdClone} <br>`  
+         mensagem.innerHTML += `Quantidade de Clones: ${sobraEnergia} <br><br>`  
+         mensagem.innerHTML += `PROVAVELMENTE VOCÊ VAI GANHAR <br>`
+     }
+
+     else if(sobraEnergia > 500 || qtdClone >= 20 || qtdClone <= 50 || percentualSobra > 0.1){
+        mensagem.innerHTML += `ANÁLISE DA GERAÇÃO DE CLONES<br>`
+         mensagem.innerHTML += `Inicial: ${energiaDisponivel} <br>`
+         mensagem.innerHTML += `Quantidade de Clones: ${qtdClone} <br>`  
+         mensagem.innerHTML += `Quantidade de Clones: ${sobraEnergia} <br><br>`  
+         mensagem.innerHTML += `A LUTA VAI SER MUITO BOA <br>`
+     } 
+     else {
+         mensagem.innerHTML += `ANÁLISE DA GERAÇÃO DE CLONES<br>`
+         mensagem.innerHTML += `Inicial: ${energiaDisponivel} <br>`
+         mensagem.innerHTML += `Quantidade de Clones: ${qtdClone} <br>`  
+         mensagem.innerHTML += `Quantidade de Clones: ${sobraEnergia} <br><br>` 
+         mensagem.innerHTML += `LANCE O 'DISCURSO NO JUTSU COM ESTE AQUI... <br>`
+     }
+        
+
+
+
+
+
+
+        // alert('passou')
+       } else{
+        alert('ERRO NA ENTRADA DE DADOS – Energia tem que ser entre 20 e 5.000. Quantidade de Clones tem que ser entre 0 e 250. Quantidade de Clones por linha tem que ser maior que 0.')
+        return
+        }
+
+
+
+
+    }
+</script>
+
+
+<style> 
+        .naruto{
+            height: 100px;
+            width: 100px;
+        }
+</style>

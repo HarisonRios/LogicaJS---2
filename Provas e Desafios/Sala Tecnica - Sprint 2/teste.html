@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="Clique()">Clique</button>
+    <div id="resultado"></div><br>
+
+    <div id="resultado2"></div>
+
+
+    
+</body>
+</html>
+
+<script>
+    function Clique(){
+
+        resultado.innerHTML = ""
+
+        for(i = 0; i <= 13; i++){
+            if(i % 2 == 0){
+                resultado.innerHTML += `${i} - Esse numero é par <br>`
+            } else{
+                resultado.innerHTML += `${i} - Esse numero é impar <br>`
+            }
+
+            if(i % 5 == 0 && i % 7 == 0){
+                resultado.innerHTML += `${i} - Esse numero é divisível por 5 e 7 <br>`
+            } 
+            else if(i % 3 == 0 && i % 4 == 0){
+                resultado.innerHTML += `${i} - Esse numero é divisível por 3 e 4 <br>`
+            }
+
+     
+        }
+        
+    }
+    
+</script>
