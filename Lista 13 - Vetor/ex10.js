@@ -1,15 +1,18 @@
 function positivosNegativos(listaNumeros = []) {
+  var maiorZero = 0;
+  var menorZero = 0;
 
-    var maiorZero = 0
-    var positivo
-    for (var posicao = 0; posicao < listaNumeros.length; posicao += 1) {
-        if (listaNumeros[posicao] > 0) {
-          positivo = true
-        } else {
-          
-        }
-    }
+  for (var posicao = 0; posicao < listaNumeros.length; posicao++) {
+      if (listaNumeros[posicao] > 0) {
+          maiorZero++;
+      } else if (listaNumeros[posicao] < 0) {
+          menorZero++;
+      }
+  }
 
-    positivosNegativos([3, 3, 4, 3, 6, 8, 3])
+  return `positivos: ${maiorZero}, negativos: ${menorZero}`;
 }
+
+
+console.log(positivosNegativos([3, -1, 4, 0, -6, 8, -2])); 
 
