@@ -1,6 +1,6 @@
 function inverterValoresVetor(vetor = []) {
-    let vetorInvertido = []; 
-    for (let contador = vetor.length - 1; contador >= 0; contador--) { 
+    var vetorInvertido = []; 
+    for (var contador = vetor.length - 1; contador >= 0; contador--) { 
         vetorInvertido.push(vetor[contador]);
     }
     return vetorInvertido; 
