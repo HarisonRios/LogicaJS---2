@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cofrinho Avançado</title>
+</head>
+<body>
+
+    
+    Informe o seu salário inicial:
+    <input type="number" id="salario_input" placeholder="Digite seu salário"><br>
+    <button onclick="iniciarCofrinho()">Iniciar Cofrinho</button><br><br>
+
+    Saldo Atual: R$ 
+    <div id="saldoResultado"></div> <br><br>
+
+    <button onclick="pagarConta(100)">Pagar Conta de 100</button>
+    <button onclick="pagarConta(500)">Pagar Conta de 500</button>
+    <button onclick="ganharNaLoteria()">Ganhar 2000 na Loteria</button>
+
+    <script>
+        var saldo = 0;
+
+
+        function iniciarCofrinho() {
+            var salario = parseFloat(salario_input.value);
+
+            if (!isNaN(salario) && salario > 0) {
+                saldo = salario;
+                saldoResultado.innerHTML = `${saldo.toFixed(2)}` 
+            } else {
+                alert("Por favor, insira um valor válido para o salário.");
+            }
+        }
+
+        function pagarConta(valor) {
+            saldo -= valor
+            if (saldo < 0) {
+                alert("Saldo insuficiente para pagar esta conta!")
+                saldo = 0
+            }
+            saldoResultado.innerHTML = `${saldo.toFixed(2)}`
+        }
+
+        function ganharNaLoteria() {
+            saldo += 2000
+            saldoResultado.innerHTML = `${saldo.toFixed(2)}`
+        }
+    </script>
+
+</body>
+</html>

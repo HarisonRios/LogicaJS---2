@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício Avaliativo</title>
+</head>
+
+<body>
+    <p>Nome:</p>
+    <input type="text" id="input_nome"><br>
+    <p>População</p>
+    <input type="text" id="input_populacao"><br>
+    <p>Grau de liberdade econômica</p>
+    <input type="text" id="input_grau_liberdade"><br><br>
+
+    <button onclick="cadastrar()"> Cadastrar </button>
+    <button onclick="analisar()"> Analisar </button>
+
+    <div id="resultado"></div>
+    <br>
+    <div id="relatorio"></div>
+</body>
+
+</html>
+
+<script>
+    let paises = []
+
+    function cadastrar() {
+        resultado.innerHTML = ""
+
+        var nome = input_nome.value
+        var populacao = input_populacao.value
+        var grauLiberdade = input_grau_liberdade.value
+
+        if (populacao < 1000 || grauLiberdade < 0 || grauLiberdade > 100) {
+            alert('Valores inválidos!')
+            return;
+        }
+
+        if (paises.length > 0) {
+            for (let i = 0; i < paises.length; i++) {
+                if (paises[i].nome == nome) {
+                    alert('Esse pais ja foi cadastrado!')
+                    return
+                }
+            }
+        }
+
+        if (grauLiberdade > 80 && grauLiberdade <= 100) {
+            alert('País Cadastrado com Sucesso - Livre')
+            grauLiberdade = 'Livre'
+        } else if (grauLiberdade > 70 && grauLiberdade <= 80) {
+            alert('País Cadastrado com Sucesso - Quase Livre')
+            grauLiberdade = 'Quase Livre'
+        } else if (grauLiberdade > 60 && grauLiberdade <= 70) {
+            alert('País Cadastrado com Sucesso - Moderadamente Livre')
+            grauLiberdade = 'Moderadamente Livre'
+        } else if (grauLiberdade > 50 && grauLiberdade <= 60) {
+            alert('País Cadastrado com Sucesso - Quase Reprimido')
+            grauLiberdade = 'Quase Reprimido'
+        } else {
+            alert('País Cadastrado com Sucesso - Reprimido')
+            grauLiberdade = 'Reprimido'
+        }
+
+        paises.push({
+            nome: nome,
+            populacao: populacao,
+            grauLiberdade: grauLiberdade
+        });
+
+        console.log(paises[0])
+
+        input_nome.value = ''
+        input_populacao.value = ''
+        input_grau_liberdade.value = ''
+    }
+
+    function analisar() {
+        relatorio.innerHTML = ""
+
+        var grauLiberdade = input_grau_liberdade.value
+        var populacao = input_populacao.value
+
+        for (contador = 0; contador < paises.length; contador++) {
+            var idh = 0
+            var desemprego = 0
+
+            if (grauLiberdade == 'Livre') {
+                idh = 0.85;
+                desemprego = 5;
+            } else if (grauLiberdade == 'Quase Livre') {
+                idh = 0.77;
+                desemprego = 7;
+            } else if (grauLiberdade == 'Moderadamente Livre') {
+                idh = 0.74;
+                desemprego = 8;
+            } else if (grauLiberdade == 'Quase Reprimido') {
+                idh = 0.65;
+                desemprego = 15;
+            } else if (grauLiberdade == 'Reprimido') {
+                idh = 0.60;
+                desemprego = 22;
+            }
+
+            
+            //EU NÃO SEI PORQUE O RESULTADO FICA 0 😭😭😭
+            
+            var pessoasSemEmprego = (paises[contador].populacao * desemprego) / 100;
+            
+            relatorio.innerHTML += `
+            <div>
+                Pais ${contador + 1}: <strong>${paises[contador].nome}</strong><br>
+                Categoria: <strong>${paises[contador].grauLiberdade}</strong><br>
+                Habitantes: <strong>${paises[contador].populacao}</strong><br>
+                IDH Médio provavel: <strong>${idh}</strong><br>
+                Desempre Médio provavel: <strong>${desemprego}%</strong>, ou seja talvez <strong>${pessoasSemEmprego}</strong> esteja sem emprego<strong><br>
+                    <br>
+                </div>
+            `
+        }
+    }
+</script>
+
+
+

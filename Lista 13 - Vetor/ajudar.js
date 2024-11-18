@@ -12,6 +12,20 @@ numeros.splice(1, 1); // Remove o número 2
 console.log(numeros); // Saída: [1, 3, 4]
 
 
+let fruta = ['banana', 'maçã', 'laranja', 'morango', 'kiwi'];
+frutas.splice(2, 2); // Remove 2 elementos a partir do índice 2 (laranja e morango)
+console.log(frutas); // ['banana', 'maçã', 'kiwi']
+
+let fruts = ['banana', 'maçã', 'laranja'];
+frutas.splice(2, 0, 'morango', 'kiwi'); // Adiciona 'morango' e 'kiwi' no índice 2
+console.log(frutas); // ['banana', 'maçã', 'morango', 'kiwi', 'laranja']
+
+let frutas = ['banana', 'maçã', 'laranja'];
+frutas.splice(1, 1, 'manga', 'kiwi'); // Remove 1 elemento no índice 1 ('maçã') e adiciona 'manga' e 'kiwi'
+console.log(frutas); // ['banana', 'manga', 'kiwi', 'laranja']
+
+
+
 // 3. Percorrendo um vetor para coletar valores
 
 // Exemplo de função que soma todos os elementos pares de um vetor
@@ -28,10 +42,6 @@ function somarPares(listaNumeros = []) {
 }
 
 console.log(somarPares([1, 2, 3, 4])); // Saída: 6 (soma de 2 + 4)
-
-push
-pop
-splice
 
 
 
@@ -109,3 +119,5 @@ function calcularMedia(vetor) {
 // Exemplo de uso
 const numeros = [10, 20, 30, 40, 50];
 console.log(calcularMedia(numeros)); // Saída: 30
+
+

@@ -1,27 +1,25 @@
-// TENHO QUE FAZER AINDA
+function valoresUnicos(vetor) {
+    let unicos = [];
 
-function removerDuplicatas(vetor) {
-    let resultado = [];
-  
+
     for (let i = 0; i < vetor.length; i++) {
-      let valorUnico = true;
-      
-      for (let j = 0; j < resultado.length; j++) {
-        if (vetor[i] === resultado[j]) {
-          valorUnico = false;
-          break;
+        let encontrado = false;
+        for (let j = 0; j < unicos.length; j++) {
+            if (vetor[i] === unicos[j]) {
+                encontrado = true;
+                break;
+            }
         }
-      }
-  
-      if (valorUnico) {
-        resultado.push(vetor[i]);
-      }
+
+        if (!encontrado) {
+            unicos.push(vetor[i]);
+        }
     }
-  
-    return resultado;
-  }
-  
-  let numeros = [1, 2, 3, 4, 2, 3, 5, 6, 1];
-  let numerosUnicos = removerDuplicatas(numeros);
-  console.log(numerosUnicos);  
-  
+
+    return unicos;
+}
+
+
+console.log(valoresUnicos([1, 2, 2, 3, 4, 4, 5])); 
+console.log(valoresUnicos([10, 10, 10, 10])); 
+console.log(valoresUnicos([7, 8, 9, 8, 9, 10])); 

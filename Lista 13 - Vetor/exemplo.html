@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Compras</title>
+</head>
+<body>
+    <h1>Lista de Compras</h1>
+
+    <!-- Lista de itens e preços -->
+    <div id="items">
+        <div>
+            <label for="banana">Banana (R$ 2.50/kg):</label>
+            <input type="number" id="banana" placeholder="Quantidade" oninput="calcularTotal()">
+        </div>
+        <div>
+            <label for="cereal">Cereal (R$ 5.00):</label>
+            <input type="number" id="cereal" placeholder="Quantidade" oninput="calcularTotal()">
+        </div>
+        <div>
+            <label for="arroz">Arroz (R$ 4.00/kg):</label>
+            <input type="number" id="arroz" placeholder="Quantidade" oninput="calcularTotal()">
+        </div>
+        <div>
+            <label for="feijao">Feijão (R$ 6.00/kg):</label>
+            <input type="number" id="feijao" placeholder="Quantidade" oninput="calcularTotal()">
+        </div>
+    </div>
+
+    <!-- Tabela para mostrar a nota fiscal -->
+    <table id="notaFiscal" style="display:none;">
+        <thead>
+            <tr>
+                <th>Item</th>
+                <th>Quantidade</th>
+                <th>Preço Unitário</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <div>
+        <p>Total da compra: R$ <span id="total">0.00</span></p>
+    </div>
+
+    <script>
+        // Definindo os preços dos itens
+        const precos = {
+            banana: 2.50, // R$ 2.50 por kg
+            cereal: 5.00, // R$ 5.00 por pacote
+            arroz: 4.00,  // R$ 4.00 por kg
+            feijao: 6.00  // R$ 6.00 por kg
+        };
+
+        // Função para calcular o total da compra
+        function calcularTotal() {
+            let total = 0;
+            const notaFiscal = document.getElementById('notaFiscal');
+            const tbody = notaFiscal.querySelector('tbody');
+            tbody.innerHTML = ''; // Limpa a tabela antes de recalcular
+
+            // Para cada item, pega a quantidade inserida e calcula o total
+            Object.keys(precos).forEach(item => {
+                const quantidade = parseFloat(document.getElementById(item).value) || 0;
+                const precoUnitario = precos[item];
+                const totalItem = quantidade * precoUnitario;
+
+                if (quantidade > 0) {
+                    // Atualiza o total
+                    total += totalItem;
+
+                    // Adiciona uma linha na tabela de nota fiscal
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${capitalizeFirstLetter(item)}</td>
+                        <td>${quantidade} ${item === 'cereal' ? 'pacote' : 'kg'}</td>
+                        <td>R$ ${precoUnitario.toFixed(2)}</td>
+                        <td>R$ ${totalItem.toFixed(2)}</td>
+                    `;
+                    tbody.appendChild(row);
+                }
+            });
+
+            // Exibe a tabela de nota fiscal e o total
+            if (total > 0) {
+                notaFiscal.style.display = 'table';
+            } else {
+                notaFiscal.style.display = 'none';
+            }
+
+            // Atualiza o valor total na tela
+            document.getElementById('total').textContent = total.toFixed(2);
+        }
+
+        // Função para capitalizar a primeira letra de cada item
+        function capitalizeFirstLetter(string) {
+            return string.charAt(0).toUpperCase() + string.slice(1);
+        }
+    </script>
+</body>
+</html>
