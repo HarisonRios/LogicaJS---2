@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Treinamento de Prova - Sprint 3</title>
+</head>
+
+<body>
+    <p>Nome da Missão:</p>
+    <input type="text" id="input_nome"><br>
+    <p>Destino</p>
+    <input type="text" id="input_destino"><br>
+    <p>Distancia até o destino (em milhões de quilômetros)</p>
+    <input type="text" id="input_distancia"><br>
+    <p>Tipo de nave (Pequena, Média, Grande)</p>
+    <select id="input_nave">
+        <option value="Pequena">Pequena</option>
+        <option value="Media">Média</option>
+        <option value="Grande">Grande</option>
+    </select><br><br>
+
+    <button onclick="cadastrar()"> Cadastrar Missão </button>
+    <button onclick="relatorios()"> Exibir Relatórios </button>
+
+    <div id="resultado"></div>
+    <br>
+    <div id="relatorio"></div>
+
+</body>
+
+</html>
+
+<script>
+    var missoes = []
+
+    // Margem de erro ta errado
+
+    function cadastrar() {
+        var nome = input_nome.value
+        var destino = input_destino.value
+        var distancia = Number(input_distancia.value)
+        var nave = input_nave.value
+
+
+        if (distancia < 10) {
+            alert("Parâmetros inválidos!")
+            return
+        }
+
+        if (missoes.length > 0) {
+            for (let i = 0; i < missoes.length; i++) {
+                if (missoes[i].nome == nome) {
+                    alert('Missão já cadastrada!')
+                    return
+                }
+            }
+        }
+
+        // Pequena: 10 mil litros de combustível por milhão de km; velocidade de 20 mil km / h.
+        // Média: 30 mil litros de combustível por milhão de km; velocidade de 40 mil km / h.
+        // Grande: 50 mil litros de combustível por milhão de km; velocidade de 60 mil km / h.
+
+        var combustivelPorMilhao = 0
+        var velocidadeMedia = 0
+
+        if (nave == "Pequena") {
+            combustivelPorMilhao = 10
+            velocidadeMedia = 20
+        } else if (nave == "Media") {
+            combustivelPorMilhao = 30
+            velocidadeMedia = 40
+        } else if (nave == "Grande") {
+            combustivelPorMilhao = 50
+            velocidadeMedia = 60
+        }
+
+        var combustivelNecessario = combustivelPorMilhao * (distancia / 0.001)
+        var tempoEstimado = (distancia / velocidadeMedia)
+        var tempoEstimado = tempoEstimado * 1000
+        var tempoEstimadoDias = tempoEstimado / 24
+        var combustivelMargemSegura = combustivelNecessario * (1 + margemErro);
+
+
+        missoes.push({
+            nome: nome,
+            destino: destino,
+            distancia: distancia,
+            nave: nave,
+            combustivelNecessario: combustivelNecessario,
+            tempoEstimadoDias: tempoEstimadoDias,
+            combustivelMargemSegura: combustivelMargemSegura
+        })
+
+        alert("Missão cadastrada com sucesso!")
+        console.log(missoes)
+
+
+        input_nome.value = ''
+        input_destino.value = ''
+        input_distancia.value = ''
+        input_nave.value = ''
+    }
+
+
+
+    var margemErro = parseInt(Math.random() * (5 - 1) + 1);
+
+
+
+
+    function relatorios() {
+        relatorio.innerHTML = ""
+
+        if (missoes.length == 0) {
+            alert("Nenhuma viagem cadastrada")
+            return
+        }
+
+
+        for (let contador = 0; contador < missoes.length; contador++) {
+            relatorio.innerHTML += `
+            <div>
+                <strong>Missão ${contador + 1}:</strong> ${missoes[contador].nome}<br>
+                <strong>Destino:</strong> ${missoes[contador].destino}<br>
+                <strong>Distância:</strong> ${missoes[contador].distancia} Milhões de KM<br> 
+                <strong>Tipo da Nave:</strong> ${missoes[contador].nave}<br>
+                <strong>Tempo estimado de viagem: </strong> ${missoes[contador].tempoEstimadoDias.toFixed(0)} Dias<br>
+                <strong>Combustível necessário:</strong> ${missoes[contador].combustivelNecessario} Litros <br>
+                <strong>Combustível na margem segura:</strong> ${missoes[contador].combustivelMargemSegura} (${margemErro}% de margem de erro).<br>
+                   <br>
+                </div>
+            `
+        }
+    }
+
+
+
+
+</script>
