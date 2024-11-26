@@ -118,4 +118,52 @@
   }
 
 
+
+
+
+</script>
+
+
+<script>
+  var contadorRodadas = 1;
+function realizarRodada() {
+    var qtdRodadas = Number(input_qtd_rodadas.value);
+    if (qtdRodadas <= 0) {
+        alert('Rodadas máximas inválidas');
+        return;
+    } else {
+        var rodadasMinimas = 1;
+        var rodadasMaximas = 10;
+        var intervalo = rodadasMaximas - rodadasMinimas;
+        var totalJogador1 = 0;
+        var totalJogador2 = 0;
+        
+        if (contadorRodadas <= qtdRodadas) {
+            var numeroAleatorio1 = Math.random() * intervalo + rodadasMinimas;
+            var numeroAleatorio2 = Math.random() * intervalo + rodadasMinimas;
+            var numeroAleatorioInteiro1 = numeroAleatorio1.toFixed(0);
+            var numeroAleatorioInteiro2 = numeroAleatorio2.toFixed(0);
+            
+            rodadasMaximas1.push(numeroAleatorioInteiro1);
+            rodadasMaximas2.push(numeroAleatorioInteiro2);
+            
+            totalJogador1 += parseInt(numeroAleatorioInteiro1);
+            totalJogador2 += parseInt(numeroAleatorioInteiro2);
+            
+            div_painel.innerHTML += `
+                Pontos Jogador 1: ${numeroAleatorioInteiro1}<br>
+                Pontos Jogador 2: ${numeroAleatorioInteiro2}<br><br>
+            `;
+            
+            contadorRodadas++; // Increment the round count
+            div_painel.innerHTML += `
+                Total Jogador 1: ${totalJogador1}<br>
+                Total Jogador 2: ${totalJogador2}<br><br>
+            `;
+        } else {
+            alert('Número de rodadas excedido');
+        }
+    }
+}
+
 </script>

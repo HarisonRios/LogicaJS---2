@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tênis Clube SPTECH</title>
+  <style>
+    body {
+      display: flex;
+      align-items: stretch;
+    }
+
+    body div:first-child,
+    body div:nth-of-type(2) {
+      padding: 8px;
+      border: 2px solid rgba(0, 0, 0, 0.2);
+    }
+
+    body div:nth-of-type(2) {
+      flex-grow: 1;
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+    <label for="input_qtd_rodadas">
+      Rodadas máximas:
+      <input id="input_qtd_rodadas" /><br />
+    </label>
+
+    <button onclick="realizarRodada()">Realizar rodada</button>
+
+    <h3>Informe as rodadas que deseja relembrar</h3>
+
+    <label for="input_inicio_intervalo">Início:</label>
+    <input id="input_inicio_intervalo" />
+    <label for="input_fim_intervalo">Fim:</label>
+    <input id="input_fim_intervalo" />
+
+    <button onclick="relembrarRodadas()">Relembrar</button>
+    <br />
+    <br />
+
+    <button onclick="exibirHistorico()">Histórico da Partida</button>
+  </div>
+  <div>
+    <h3>Painel</h3>
+    <div id="div_painel"></div>
+  </div>
+</body>
+
+</html>
+
+<script>
+
+
+var rodadasMaximas1 = []
+var rodadasMaximas2 = []
+var contadorRodadas = 1
+
+function realizarRodada() {
+  var qtdRodadas = Number(input_qtd_rodadas.value)
+
+  if (qtdRodadas <= 0) {
+    alert('Rodadas máximas inválidas')
+    return;
+  } 
+  else {
+    var rodadasMinimas = 1
+    var rodadasMaximas = 10
+    var intervalo = rodadasMaximas - rodadasMinimas
+    var totalJogador1 = 0
+    var totalJogador2 = 0
+
+    if (contadorRodadas <= qtdRodadas) {
+      for (contadorRodadas; contadorRodadas <= qtdRodadas; contadorRodadas++) {
+        
+        var numeroAleatorio1 = Math.random() * intervalo + rodadasMinimas
+        var numeroAleatorio2 = Math.random() * intervalo + rodadasMinimas
+
+        var numeroAleatorioInteiro1 = numeroAleatorio1.toFixed(0)
+        var numeroAleatorioInteiro2 = numeroAleatorio2.toFixed(0)
+
+        rodadasMaximas1.push(numeroAleatorioInteiro1)
+        rodadasMaximas2.push(numeroAleatorioInteiro2)
+
+        totalJogador1 += parseInt(numeroAleatorioInteiro1)
+        totalJogador2 += parseInt(numeroAleatorioInteiro2)
+
+        div_painel.innerHTML += `
+        Pontos Jogador 1: ${numeroAleatorioInteiro1}<br> 
+        Pontos Jogador 2: ${numeroAleatorioInteiro2}<br><br>`
+      }
+
+      div_painel.innerHTML += `
+      Total Jogador 1: ${totalJogador1}<br>
+      Total Jogador 2: ${totalJogador2}<br><br>`
+    } else {
+      alert('Número de rodadas excedido');
+    }
+  }
+
+  console.log(rodadasMaximas1);
+  console.log(rodadasMaximas2);
+}
+
+
+    
+
+
+</script>

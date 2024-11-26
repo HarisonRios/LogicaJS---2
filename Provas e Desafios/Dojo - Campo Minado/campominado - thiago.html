@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Campo Minado Sptech</h1>
+
+    Tipo de campo: <select name="" id="select_qtd_campos">
+        <option value="4">2x2</option>
+        <option value="9">3x3</option>
+        <option value="16">4x4</option>
+        <option value="25">5x5</option>
+        <option value="36">6x6</option>
+    </select>
+    <button onclick="gerarCampos()">Novo Jogo</button>
+    <br>
+    Minas: <span id="qtd_mina">?</span><br>
+    Exploções: <span id="qtd_explosoes">0</span><br>
+    Pontos: <span id="qtd_pontos">0</span><br>
+
+    <div id="div_resultado"></div>
+
+</body>
+</html>
+
+<script>
+    var qtdBomba = 0;
+    var qtdVazio = 0;
+    var pontos_acumulados = 0
+    var bombas_clicadas = 0
+
+
+    function gerarCampos() {
+        qtdBomba = 0
+        qtdVazio = 0
+        div_resultado.innerHTML = ''
+        const qtd_campos = select_qtd_campos.value
+      
+        for (var i = 1; i <= qtd_campos; i++) {
+            var random = Math.round(Math.random());
+      
+            if(random == 0){
+                div_resultado.innerHTML += `<img id="img${i}" onclick="bloco('bomba', img${i})" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2RI7Oy3fTTn9wrcMCbgIw7h7gyKM6cBLP3w&s" style="width:50px;">`;
+                qtdBomba += 1
+            } else if (random == 1) {
+                div_resultado.innerHTML += `<img id="img${i}" onclick="bloco('vazio', img${i})" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2RI7Oy3fTTn9wrcMCbgIw7h7gyKM6cBLP3w&s" style="width:50px;">`
+                qtdVazio += 1
+            }
+
+            if(i % Math.sqrt(qtd_campos)==0){
+                div_resultado.innerHTML += `<br>`
+            }
+            
+        
+        }
+
+        qtd_mina.innerHTML = `${qtdBomba}`
+
+        if(qtdBomba == qtd_campos){
+            alert(`AZARADO`)
+        }else if(qtd_campos == qtdVazio){
+            alert(`SORTUDO`)
+        }
+    }
+
+    var listaClicados = []
+
+    function bloco(tipo = 'vazio', idimagem) {
+
+        if(listaClicados.indexOf(idimagem) != -1){
+            return alert('Você ja clicou nesse quadrado')
+        }
+
+        if (tipo == 'vazio') {
+            pontos_acumulados += 100
+            idimagem.src = 'https://cdn-icons-png.flaticon.com/512/545/545666.png'
+            qtdVazio--
+            listaClicados.push(idimagem)
+    
+        } else if (tipo == 'bomba'){
+            idimagem.src = 'bomb.png'
+            bombas_clicadas++       
+            qtdBomba--
+            listaClicados.push(idimagem)
+
+        }
+
+
+        qtd_pontos.innerHTML = pontos_acumulados
+        qtd_explosoes.innerHTML = bombas_clicadas
+
+        // Validar se já acabou
+        if (qtdVazio == 0) {
+            alert('Você ganhou')
+        } else if (qtdBomba == 0) {
+            alert('Você perdeu')
+        }
+       
+    }
+
+</script>

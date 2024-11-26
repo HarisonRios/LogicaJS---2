@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tênis Clube SPTECH</title>
+  <style>
+    body {
+      display: flex;
+      align-items: stretch;
+    }
+
+    body div:first-child,
+    body div:nth-of-type(2) {
+      padding: 8px;
+      border: 2px solid rgba(0, 0, 0, 0.2);
+    }
+
+    body div:nth-of-type(2) {
+      flex-grow: 1;
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+    <label for="input_qtd_rodadas">
+      Rodadas máximas:
+      <input id="input_qtd_rodadas" /><br />
+    </label>
+
+    <button onclick="realizarRodada()">Realizar rodada</button>
+
+    <h3>Informe as rodadas que deseja relembrar</h3>
+
+    <label for="input_inicio_intervalo">Início:</label>
+    <input id="input_inicio_intervalo" />
+    <label for="input_fim_intervalo">Fim:</label>
+    <input id="input_fim_intervalo" />
+
+    <button onclick="relembrarRodadas()">Relembrar</button>
+    <br />
+    <br />
+
+    <button onclick="exibirHistorico()">Histórico da Partida</button>
+  </div>
+  <div>
+    <h3>Painel</h3>
+    <div id="div_painel"></div>
+  </div>
+</body>
+
+</html>
+
+
+<script>
+  var rodadasMaximas1 = []
+  var rodadasMaximas2 = []
+  var contadorRodadas = 1
+
+  function realizarRodada() {
+    var qtdRodadas = Number(input_qtd_rodadas.value)
+
+    if (qtdRodadas <= 0) {
+      alert('Rodadas máximas inválidas')
+      return;
+    }
+    else {
+      var rodadasMinimas = 1
+      var rodadasMaximas = 10
+      var intervalo = rodadasMaximas - rodadasMinimas
+
+      var totalJogador1 = 0
+      var totalJogador2 = 0
+
+      if (contadorRodadas <= qtdRodadas) {
+        for (contadorRodadas = 1; contadorRodadas <= qtdRodadas; contadorRodadas++) {
+
+          var numeroAleatorio1 = Math.random() * intervalo + rodadasMinimas
+          var numeroAleatorio2 = Math.random() * intervalo + rodadasMinimas
+
+          var numeroAleatorioInteiro1 = numeroAleatorio1.toFixed(0)
+          var numeroAleatorioInteiro2 = numeroAleatorio2.toFixed(0)
+
+          rodadasMaximas1.push(numeroAleatorioInteiro1)
+          rodadasMaximas2.push(numeroAleatorioInteiro2)
+
+          totalJogador1 += parseInt(numeroAleatorioInteiro1)
+          totalJogador2 += parseInt(numeroAleatorioInteiro2)
+
+          div_painel.innerHTML += `
+        Pontos Jogador 1: ${numeroAleatorioInteiro1}<br> 
+        Pontos Jogador 2: ${numeroAleatorioInteiro2}<br><br>`
+        }
+
+        div_painel.innerHTML += `
+      Total Jogador 1: ${totalJogador1}<br>
+      Total Jogador 2: ${totalJogador2}<br><br>`
+      } else {
+        alert('Número de rodadas excedido');
+      }
+    }
+  }
+
+
+  function relembrarRodadas() {
+    div_painel.innerHTML = ``;
+    var inicio = Number(input_inicio_intervalo.value);
+    var final = Number(input_fim_intervalo.value);
+
+    var totalJogador1Relembrar = 0
+    var totalJogador2Relembrar = 0
+
+    var maiorpontuacaojogador1 = 0
+    var maiorpontuacaojogador2 = 0
+
+    var menorpontuacaojogador1 = 10
+    var menorpontuacaojogador2 = 10
+
+    for (var contadorLembrarRodadas = inicio; contadorLembrarRodadas <= final; contadorLembrarRodadas++) {
+      totalJogador1Relembrar += parseInt(rodadasMaximas1[contadorLembrarRodadas - 1])
+      totalJogador2Relembrar += parseInt(rodadasMaximas2[contadorLembrarRodadas - 1])
+
+      if (rodadasMaximas1[contadorLembrarRodadas - 1] > maiorpontuacaojogador1) {
+        maiorpontuacaojogador1 = rodadasMaximas1[contadorLembrarRodadas - 1]
+      }
+      if (rodadasMaximas2[contadorLembrarRodadas - 1] > maiorpontuacaojogador2) {
+        maiorpontuacaojogador2 = rodadasMaximas2[contadorLembrarRodadas - 1]
+      }
+      if (rodadasMaximas1[contadorLembrarRodadas - 1] < menorpontuacaojogador1) {
+        menorpontuacaojogador1 = rodadasMaximas1[contadorLembrarRodadas - 1]
+      }
+      if (rodadasMaximas2[contadorLembrarRodadas - 1] < menorpontuacaojogador2) {
+        menorpontuacaojogador2 = rodadasMaximas2[contadorLembrarRodadas - 1]
+      }
+
+      div_painel.innerHTML += `
+      Jogador 1: ${rodadasMaximas1[contadorLembrarRodadas - 1]}<br>
+      Jogador 2: ${rodadasMaximas2[contadorLembrarRodadas - 1]}<br>
+      <br>
+      `
+    }
+    div_painel.innerHTML += `
+      Total Jogador 1: ${totalJogador1Relembrar}<br>
+      Total Jogador 2: ${totalJogador2Relembrar}<br>
+      <br>
+      `
+
+    div_painel.innerHTML += `
+      Maior Pontuação do Jogador 1: ${maiorpontuacaojogador1}<br>
+      Menor Pontuação do Jogador 1: ${menorpontuacaojogador1}<br>
+      Maior Pontuação do Jogador 2: ${maiorpontuacaojogador2}<br>
+      Menor Pontuação do Jogador 2: ${menorpontuacaojogador2}<br>
+      <br>
+      `
+    console.log(menorpontuacaojogador1)
+    console.log(menorpontuacaojogador2)
+  }
+
+
+
+  function exibirHistorico() {
+    div_painel.innerHTML = ``;
+    var qtdRodadas = Number(input_qtd_rodadas.value)
+
+
+    var totalJogador1Historico = 0
+    var totalJogador2Historico = 0
+
+    // Fiz isso, mas comecei o codigo errado, achei que era para mostar tudo de uma vez. 
+    // Não consegui inverter o vetor tbm
+
+
+    if (contadorRodadas == qtdRodadas) {
+      alert('Finalize todas as rodadas da partida.')
+    }
+
+    else {
+      for (var contadorInvertido = qtdRodadas; contadorInvertido > 0; contadorInvertido--) {
+        totalJogador1Historico += parseInt(rodadasMaximas1[contadorInvertido - 1])
+        totalJogador2Historico += parseInt(rodadasMaximas2[contadorInvertido - 1])
+
+        if (rodadasMaximas1[contadorInvertido - 1] > rodadasMaximas2[contadorInvertido - 1]) {
+          div_painel.innerHTML += `
+          <strong>Jogador 1 Ganhou a ${qtdRodadas - contadorInvertido + 1}° Rodada</strong><br><br>
+          Jogador 1: ${rodadasMaximas1[contadorInvertido - 1]}<br>
+          Jogador 2: ${rodadasMaximas2[contadorInvertido - 1]}<br>
+          <br>
+          `
+        } else if (rodadasMaximas1[contadorInvertido - 1] == rodadasMaximas2[contadorInvertido - 1]) {
+          div_painel.innerHTML += `
+          <strong>Empate na ${qtdRodadas - contadorInvertido + 1}° Rodada<br></strong>
+          Jogador 1: ${rodadasMaximas1[contadorInvertido - 1]}<br>
+          Jogador 2: ${rodadasMaximas2[contadorInvertido - 1]}<br>
+          <br>
+          `
+        } else if (rodadasMaximas2[contadorInvertido - 1] > rodadasMaximas1[contadorInvertido - 1]) {
+          div_painel.innerHTML += `
+         <strong>Jogador 2 Ganhou a ${qtdRodadas - contadorInvertido + 1}° Rodada<br></strong>
+          Jogador 1: ${rodadasMaximas1[contadorInvertido - 1]}<br>
+          Jogador 2: ${rodadasMaximas2[contadorInvertido - 1]}<br>
+          <br>
+          `
+        }
+        div_painel.innerHTML += `
+      Total Jogador 1: ${totalJogador1Historico}<br>
+      Total Jogador 2: ${totalJogador2Historico}<br>
+      <br>
+      `
+      }
+    }
+  }
+
+
+  console.log(rodadasMaximas1)
+  console.log(rodadasMaximas2)
+</script>
